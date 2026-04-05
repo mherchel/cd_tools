@@ -5,7 +5,7 @@
 
 /* eslint-env es6:false, node:false */
 /* eslint-disable strict, func-names, object-shorthand, no-var, prefer-template, prefer-arrow-callback */
-(function($, Drupal) {
+(function($, Drupal, once) {
   "use strict";
 
   $.extend(Drupal.Message, {
@@ -23,8 +23,7 @@
 
   Drupal.behaviors.messageTest = {
     attach: function(context, settings) {
-      $("body", context)
-        .once("messageTest")
+      $(once("messageTest", "body", context))
         .each(function() {
           var messenger = new Drupal.Message();
 
@@ -38,6 +37,6 @@
         });
     }
   };
-})(jQuery, Drupal);
+})(jQuery, Drupal, once);
 /* eslint-enable strict, func-names, object-shorthand, no-var, prefer-template, prefer-arrow-callback */
 /* eslint-env es6:true, node:true */

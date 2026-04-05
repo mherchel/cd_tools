@@ -7,5 +7,4 @@ progress:
   dependencies:
     - core/drupal.ajax
     - core/jquery
-    - core/jquery.once
-    - core/jquery.ui
+    - core/once

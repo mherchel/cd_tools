@@ -3,4 +3,5 @@ message-test:
     js/message-test.js: {}
   dependencies:
     - core/drupal.message
-    - core/jquery.once
+    - core/jquery
+    - core/once

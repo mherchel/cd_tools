@@ -5,13 +5,12 @@
 
 /* eslint-env es6:false, node:false */
 /* eslint-disable strict, func-names, object-shorthand, no-var, prefer-template */
-(function($, Drupal) {
+(function($, Drupal, once) {
   "use strict";
 
   Drupal.behaviors.progressThrobberTest = {
     attach: function(context) {
-      $(".throbber-canvas, .throbber-message-canvas", context)
-        .once("progressThrobberTest")
+      $(once("progressThrobberTest", ".throbber-canvas, .throbber-message-canvas", context))
         .each(function() {
           $(this).append(
             Drupal.theme(
@@ -27,8 +26,7 @@
 
   Drupal.behaviors.progressProgressTest = {
     attach: function(context) {
-      $(".ajax-progress-canvas, .ajax-progress-small-canvas", context)
-        .once("progressProgressTest")
+      $(once("progressProgressTest", ".ajax-progress-canvas, .ajax-progress-small-canvas", context))
         .each(function() {
           var id = $(this)
             .uniqueId()
@@ -62,13 +60,12 @@
     attach: function(context) {
       // Canvas does not matter visually, but we need a parent to append the
       // markup.
-      $(".fullscreen-canvas", context)
-        .once("progressFullscreenTest")
+      $(once("progressFullscreenTest", ".fullscreen-canvas", context))
         .each(function() {
           $(this).append(Drupal.theme("ajaxProgressIndicatorFullscreen"));
         });
     }
   };
-})(jQuery, Drupal);
+})(jQuery, Drupal, once);
 /* eslint-enable strict, func-names, object-shorthand, no-var, prefer-template */
 /* eslint-env es6:true, node:true */
