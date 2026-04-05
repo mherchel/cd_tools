@@ -98,7 +98,7 @@ class DashboardForm extends FormBase {
   protected function getRequiredModuleNames($extension): array {
     $requires = [];
     foreach ($extension->info['dependencies'] ?? [] as $dependency) {
-      // Dependencies are strings like "drupal:node" or "cd_core:cd_core".
+      // Dependencies are strings like "drupal:node" or "cd_tools:cd_tools".
       $parts = explode(':', $dependency, 2);
       $requires[] = $parts[1] ?? $parts[0];
     }

@@ -1,11 +1,11 @@
 name: 'Textfield Test'
 type: module
 description: 'Test form for text-like form items'
-package: Claro
+package: 'CD Tools'
 claro_test: true
 dependencies:
-  - cd_core:cd_core
-  - cd_core:textfixtures
+  - cd_tools:cd_tools
+  - cd_tools:textfixtures
   - drupal:contact
   - drupal:datetime
   - drupal:datetime_range

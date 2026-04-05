@@ -12,7 +12,7 @@ dependencies:
     - field.field.contact_message.field_cardinality_test.multitext_unlimited_required
     - field.field.contact_message.field_cardinality_test.multitext_unlimited_required_dis
   module:
-    - cd_core
+    - cd_tools
     - field_layout
 third_party_settings:
   field_layout:

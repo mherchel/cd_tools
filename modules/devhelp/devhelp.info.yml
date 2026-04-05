@@ -1,0 +1,6 @@
+name: 'Developer Helper'
+description: 'Disables render caching, enables debug mode'
+type: module
+package: 'CD Tools'
+dependencies: {  }
+core_version_requirement: ^10.3 || ^11 || ^12

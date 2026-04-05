@@ -1,7 +1,7 @@
 name: 'Details Test'
 type: module
 description: 'Makes site configure form accessible by anonymous users for testing details element'
-package: Claro
+package: 'CD Tools'
 claro_test: true
 dependencies:
   - drupal:user

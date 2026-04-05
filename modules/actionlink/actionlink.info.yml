@@ -1,7 +1,7 @@
 name: 'Action Link Test'
 type: module
 description: 'Test page for the new Action Link component'
-package: Claro
+package: 'CD Tools'
 claro_test: true
 dependencies: {}
 core_version_requirement: ^10.3 || ^11 || ^12

@@ -8,7 +8,7 @@ dependencies:
     - field.field.contact_message.select.select_single
     - field.field.contact_message.select.select_single_disabled
   module:
-    - cd_core
+    - cd_tools
     - field_layout
 third_party_settings:
   field_layout:

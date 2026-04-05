@@ -10,7 +10,7 @@ dependencies:
     - field.field.contact_message.textarea.formatted_summary
   module:
     - field_layout
-    - cd_core
+    - cd_tools
     - text
 third_party_settings:
   field_layout:

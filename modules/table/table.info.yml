@@ -1,7 +1,7 @@
 name: 'Table Test'
 type: module
 description: 'Test pages for table component'
-package: Claro
+package: 'CD Tools'
 claro_test: true
 dependencies:
   - drupal:field_ui

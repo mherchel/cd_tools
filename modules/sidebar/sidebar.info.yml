@@ -1,8 +1,8 @@
 name: 'Sidebar Test'
 type: module
 description: 'Tests entity meta sidebar by making node/add routes accessible by anonymous users'
-package: Claro
+package: 'CD Tools'
 claro_test: true
 dependencies:
-  - cd_core:cd_node
+  - cd_tools:cd_node
 core_version_requirement: ^10.3 || ^11 || ^12

@@ -1,0 +1,105 @@
+<?php
+
+/**
+ * @file
+ * Contains code for the Clarodist Tools module.
+ */
+
+use Drupal\Component\Utility\Html;
+use Drupal\Core\Render\Element;
+
+/**
+ * Implements hook_menu_links_discovered_alter().
+ *
+ * Auto-collects every menu link provided by a module tagged with
+ * `claro_test: true` in its info.yml and reparents it under the existing
+ * cd_tools dashboard link. This turns the CD Tools menu entry into an
+ * expandable drawer in the core Navigation sidebar that lists every
+ * enabled test module's page, without any per-submodule maintenance: a
+ * submodule just needs `claro_test: true` and its own `*.links.menu.yml`
+ * entry and it will show up automatically.
+ */
+function cd_tools_menu_links_discovered_alter(array &$links): void {
+  $parent_id = 'cd_tools.dashboard';
+
+  // If the dashboard link isn't present (e.g. during early bootstrap before
+  // this module's own link has been discovered), nothing to collect.
+  if (!isset($links[$parent_id])) {
+    return;
+  }
+
+  $module_list = \Drupal::service('extension.list.module')->getList();
+  $collected_keys = [];
+  foreach ($links as $key => &$link) {
+    if ($key === $parent_id) {
+      continue;
+    }
+    $provider = $link['provider'] ?? NULL;
+    if (!$provider || !isset($module_list[$provider])) {
+      continue;
+    }
+    // Only adopt links from modules explicitly flagged as Claro test modules.
+    if (empty($module_list[$provider]->info['claro_test'])) {
+      continue;
+    }
+    $link['menu_name'] = 'admin';
+    $link['parent'] = $parent_id;
+    $collected_keys[] = $key;
+  }
+  unset($link);
+
+  // Sort the collected children alphabetically by title (case-insensitive)
+  // and assign sequential weights so they render in that order under the
+  // drawer.
+  usort($collected_keys, static function ($a, $b) use ($links) {
+    return strcasecmp((string) $links[$a]['title'], (string) $links[$b]['title']);
+  });
+  foreach ($collected_keys as $index => $key) {
+    $links[$key]['weight'] = $index;
+  }
+}
+
+/**
+ * Implements hook_entity_type_alter().
+ */
+function cd_tools_entity_type_alter(array &$entity_types) {
+  /** @var \Drupal\Core\Entity\EntityTypeInterface[] $entity_types */
+  if (isset($entity_types['contact_form'])) {
+    $entity_types['contact_form']->setHandlerClass('access', '\Drupal\cd_tools\ContactFormAccessControlHandler');
+  }
+}
+
+/**
+ * Prepares variables for the side_by_side layout template.
+ *
+ * Default template: layout--side-by-side.html.twig.
+ *
+ * See the layout--side-by-side.html.twig template for the list of variables.
+ */
+function template_preprocess_layout__side_by_side(&$variables) {
+  $variables['content']['main']['#pre_render'][] = function ($region) {
+    foreach (Element::children($region) as $item_key) {
+      $region[$item_key]['#theme_wrappers']['container__sbs_item'] = [
+        '#attributes' => ['data-region' => $region[$item_key]['#group'] ?? 'main'],
+      ];
+    }
+
+    return $region;
+  };
+}
+
+/**
+ * Implements hook_preprocess_HOOK() for container__sbs_items.
+ *
+ * Removes possibly duped attributes (classes or mainly ids) from the container
+ * by overriding the provided array.
+ */
+function cd_tools_preprocess_container__sbs_item(&$variables) {
+  $region = !empty($variables['attributes']['data-region']) ?
+    $variables['attributes']['data-region'] : FALSE;
+  $variables['attributes'] = ['class' => ['sbs-layout__item']];
+
+  if ($region) {
+    $variables['attributes']['class'][] = Html::getClass('sbs-layout__item--' . $region);
+  }
+}

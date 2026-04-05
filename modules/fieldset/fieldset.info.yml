@@ -1,9 +1,9 @@
 name: 'Fieldset Test'
 type: module
 description: 'Test pages for Fieldset component'
-package: Claro
+package: 'CD Tools'
 claro_test: true
 dependencies:
-  - cd_core:lang_hebrew
+  - cd_tools:lang_hebrew
   - core:views_ui
 core_version_requirement: ^10.3 || ^11 || ^12

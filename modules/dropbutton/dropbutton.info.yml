@@ -1,11 +1,11 @@
 name: 'Dropbutton Test'
 type: module
 description: 'Test pages for Dropbutton (or Operations) component'
-package: Claro
+package: 'CD Tools'
 claro_test: true
 dependencies:
-  - cd_core:cd_node
-  - cd_core:lang_hebrew
+  - cd_tools:cd_node
+  - cd_tools:lang_hebrew
   - core:node
   - core:field_ui
   - core:views_ui

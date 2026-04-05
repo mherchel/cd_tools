@@ -43,7 +43,7 @@ dependencies:
     - file
     - image
     - link
-    - cd_core
+    - cd_tools
     - telephone
     - textfixtures
 third_party_settings:

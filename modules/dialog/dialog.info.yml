@@ -1,7 +1,7 @@
 name: 'Dialog Test'
 type: module
 description: 'Test page with Dialog examples'
-package: Claro
+package: 'CD Tools'
 claro_test: true
 dependencies:
   - core:filter

@@ -13,7 +13,7 @@ dependencies:
     - field.field.contact_message.checkbox_radio.radios_disabled
   module:
     - field_layout
-    - cd_core
+    - cd_tools
 third_party_settings:
   field_layout:
     id: side_by_side

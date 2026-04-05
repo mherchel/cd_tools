@@ -1,7 +1,7 @@
 name: 'Pager Test'
 type: module
 description: 'Test pages for pagers'
-package: Claro
+package: 'CD Tools'
 claro_test: true
 dependencies:
   - drupal:views

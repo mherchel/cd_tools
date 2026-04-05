@@ -1,7 +1,7 @@
 name: 'Toolbar Test'
 type: module
 description: 'Makes toolbar and some admin routes accessible by anonymous users'
-package: Claro
+package: 'CD Tools'
 claro_test: true
 dependencies:
   - drupal:filter

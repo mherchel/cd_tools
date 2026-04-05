@@ -1,7 +1,7 @@
 name: 'Tabledrag Test'
 type: module
 description: 'Provides a taxonomy term overview page with hierachy'
-package: Claro
+package: 'CD Tools'
 claro_test: true
 dependencies:
   - drupal:taxonomy

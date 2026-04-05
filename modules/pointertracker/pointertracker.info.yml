@@ -1,0 +1,6 @@
+name: 'Pointer tracker'
+type: module
+description: 'A crosshair that tracks the pointer'
+package: 'CD Tools'
+dependencies: {  }
+core_version_requirement: ^10.3 || ^11 || ^12

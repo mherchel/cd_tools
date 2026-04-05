@@ -1,7 +1,7 @@
 name: 'Tab Test'
 type: module
 description: 'Provides test routes for tab testing'
-package: Claro
+package: 'CD Tools'
 claro_test: true
 dependencies:
   - drupal:filter

@@ -1,0 +1,23 @@
+<?php
+
+/**
+ * @file
+ * Code for Theme Switcher module.
+ */
+
+use Drupal\themeswitcher\Form\ThemeSwitcherForm;
+
+/**
+ * Implements hook_page_bottom().
+ *
+ * Adds theme switcher form to the bottom of the page. Uses a #lazy_builder
+ * placeholder so the form is built inside the main render context, which
+ * allows its cacheability metadata to bubble correctly under Drupal 12's
+ * stricter bubbling assertions.
+ */
+function themeswitcher_page_bottom(array &$page_bottom): void {
+  $page_bottom['themeswitcher'] = [
+    '#lazy_builder' => [ThemeSwitcherForm::class . '::lazyBuilder', []],
+    '#create_placeholder' => TRUE,
+  ];
+}

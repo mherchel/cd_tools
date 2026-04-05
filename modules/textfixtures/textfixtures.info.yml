@@ -1,0 +1,7 @@
+name: Textfixtures
+type: module
+description: 'Defines a field types for color, password and search.'
+package: 'CD Tools'
+dependencies:
+  - drupal:field
+core_version_requirement: ^10.3 || ^11 || ^12

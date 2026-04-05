@@ -1,0 +1,9 @@
+side-by-side:
+  css:
+    layout:
+      layouts/side-by-side/side-by-side.layout.css: {}
+  js:
+    layouts/side-by-side/side-by-side.js: {}
+  dependencies:
+    - core/drupal
+    - core/once
