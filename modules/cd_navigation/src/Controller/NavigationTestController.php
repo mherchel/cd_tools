@@ -1,6 +1,6 @@
 <?php
 
-namespace Drupal\navigation\Controller;
+namespace Drupal\cd_navigation\Controller;
 
 use Drupal\Core\Cache\CacheableMetadata;
 use Drupal\Core\Menu\MenuLinkInterface;

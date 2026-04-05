@@ -1,0 +1,8 @@
+cd_navigation.configtest:
+  path: '/cd-navigation/config'
+  defaults:
+    _controller: '\Drupal\cd_navigation\Controller\NavigationTestController::overview'
+    link_id: 'system.admin_config'
+    _title: 'Navigation Test'
+  requirements:
+    _permission: 'access test navigation pages'
