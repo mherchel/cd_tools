@@ -1,10 +1,10 @@
 title_shortcut.filtertips:
   title: All
-  route_name: filter.tips_all
-  base_route: filter.tips_all
+  route_name: tab.overview
+  base_route: tab.overview
 
 title_shortcut.filtertip:
   class: \Drupal\Core\Menu\LocalTaskDefault
   deriver: \Drupal\title_shortcut\Plugin\Derivative\TabLocalTaskDeriver
-  route_name: filter.tips
-  base_route: filter.tips_all
+  route_name: tab.filter_tips
+  base_route: tab.overview

@@ -69,7 +69,7 @@ function _title_shortcut_shortcuts() {
   return [
     '676307a2-2a8d-4e26-bacb-72dc2ff009c8' => [
       'title' => 'Filter tips',
-      'link' => ['uri' => 'route:filter.tips_all'],
+      'link' => ['uri' => 'route:tab.overview'],
     ],
   ];
 }

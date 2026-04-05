@@ -4,7 +4,7 @@ description: 'Tests page title with shortcuts'
 package: Claro
 claro_test: true
 dependencies:
-  - drupal:filter
+  - cd_tools:tab
   - drupal:shortcut
   - drupal:toolbar
 core_version_requirement: ^10.3 || ^11 || ^12
