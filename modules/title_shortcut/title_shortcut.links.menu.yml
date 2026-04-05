@@ -1,7 +1,7 @@
-pager.test:
+title_shortcut.overview:
   title: 'Page title'
   menu_name: main
-  route_name: filter.tips
+  route_name: tab.filter_tips
   route_parameters:
     filter_format: plain_text
   weight: 18

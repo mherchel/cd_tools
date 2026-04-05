@@ -253,8 +253,8 @@ class ButtonTestForm extends FormBase {
     if ($sbs_layout_definition = $this->layoutPluginManager->getDefinition('side_by_side', FALSE)) {
       $sbs_layout = $this->layoutPluginManager->createInstance('side_by_side');
       $fill = [];
-      $fill['#process'][] = '\Drupal\Core\Render\Element\RenderElement::processGroup';
-      $fill['#pre_render'][] = '\Drupal\Core\Render\Element\RenderElement::preRenderGroup';
+      $fill['#process'][] = '\Drupal\Core\Render\Element\RenderElementBase::processGroup';
+      $fill['#pre_render'][] = '\Drupal\Core\Render\Element\RenderElementBase::preRenderGroup';
       // Add the regions to the $build in the correct order.
       $regions = array_fill_keys($sbs_layout_definition->getRegionNames(), $fill);
 
