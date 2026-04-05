@@ -1,6 +1,8 @@
 cd_tools.dashboard:
-  title: 'Claro tools dashboard'
+  title: 'CD Tools'
   route_name: cd_tools.dashboard
   description: 'Dashboard of Claro test modules'
-  parent: system.modules_list
-  weight: 1
+  menu_name: admin
+  parent: system.admin
+  expanded: true
+  weight: 100
