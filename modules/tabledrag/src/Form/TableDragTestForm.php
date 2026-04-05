@@ -96,7 +96,6 @@ class TableDragTestForm extends FormBase {
       ],
       '#tabledrag' => $tabledrag,
       '#attributes' => ['id' => $table_id],
-      '#attached' => ['library' => ['tabledrag_test/tabledrag']],
     ];
 
     $rows = $this->state->get($table_id) ?? $rows;
