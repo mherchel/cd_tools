@@ -1,7 +1,6 @@
 name: 'Textfield Test'
 type: module
 description: 'Test form for text-like form items'
-core: 8.x
 package: Claro
 claro_test: true
 dependencies:
@@ -15,4 +14,4 @@ dependencies:
   - drupal:telephone
   - drupal:text
   - drupal:link
-core_version_requirement: ^8 || ^9 || ^10
+core_version_requirement: ^10.3 || ^11 || ^12

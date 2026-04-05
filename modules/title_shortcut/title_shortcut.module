@@ -16,9 +16,9 @@ function title_shortcut_toolbar() {
     'tab' => [
       '#type' => 'link',
       '#title' => t('Page title'),
-      '#url' => Url::fromRoute('filter.tips', [
-        'filter_format' => 'plain_text',
-      ]),
+      // The filter.tips route was removed in Drupal 12. Use <front> as a
+      // safe no-op target for this test toolbar link.
+      '#url' => Url::fromRoute('<front>'),
     ],
     '#weight' => 118,
   ];

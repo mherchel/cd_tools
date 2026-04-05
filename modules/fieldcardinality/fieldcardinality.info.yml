@@ -1,7 +1,6 @@
 name: 'Field Cardinality Test'
 type: module
 description: 'Test form for the widget of fields with multiple items'
-core: 8.x
 package: Claro
 claro_test: true
 dependencies:
@@ -9,4 +8,4 @@ dependencies:
   - drupal:contact
   - drupal:field_layout
   - drupal:text
-core_version_requirement: ^8 || ^9 || ^10
+core_version_requirement: ^10.3 || ^11 || ^12

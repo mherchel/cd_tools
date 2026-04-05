@@ -18,6 +18,7 @@ class NodeTypeAccessControlHandler extends DefaultAccessControlHandler {
    * {@inheritdoc}
    */
   protected function checkAccess(EntityInterface $entity, $operation, AccountInterface $account) {
+    /** @var \Drupal\node\NodeTypeInterface $entity */
     switch ($operation) {
       case 'view':
         return AccessResult::allowedIfHasPermission($account, 'access content');
@@ -51,7 +52,7 @@ class NodeTypeAccessControlHandler extends DefaultAccessControlHandler {
    * @param \Drupal\Core\Session\AccountInterface $account
    *   The user for which to check access.
    *
-   * @return \Drupal\Core\Access\AccessResultInterface
+   * @return \Drupal\Core\Access\AccessResult
    *   The access result.
    */
   protected function originalCheckAccess(EntityInterface $entity, $operation, AccountInterface $account) {

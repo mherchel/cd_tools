@@ -6,6 +6,7 @@ use Drupal\Component\Serialization\Json;
 use Drupal\Core\Controller\ControllerBase;
 use Drupal\Core\Url;
 use Drupal\Component\Render\MarkupInterface;
+use Drupal\filter\FilterFormatRepositoryInterface;
 
 /**
  * Contrains code for Dialog example route and components.
@@ -83,7 +84,7 @@ class DialogController extends ControllerBase {
       'filter_tips' => [
         '#theme' => 'filter_tips',
         '#long' => TRUE,
-        '#tips' => _filter_tips(-1, TRUE),
+        '#tips' => $this->buildFilterTips(),
       ],
     ];
   }
@@ -165,6 +166,34 @@ class DialogController extends ControllerBase {
     }
 
     return $link;
+  }
+
+  /**
+   * Builds a tips array for all filter formats accessible to the current user.
+   *
+   * Replaces the deprecated _filter_tips() function (removed in Drupal 12).
+   *
+   * @return array<string, array<string, array{tip: array{'#markup': string|\Stringable}, id: string}>>
+   *   An associative array of tips, keyed by format label.
+   */
+  protected function buildFilterTips(): array {
+    $formats = \Drupal::service(FilterFormatRepositoryInterface::class)
+      ->getFormatsForAccount($this->currentUser());
+    $tips = [];
+    foreach ($formats as $format) {
+      foreach ($format->filters() as $name => $filter) {
+        if ($filter->status) {
+          $tip = $filter->tips(TRUE);
+          if (isset($tip)) {
+            $tips[$format->label()][$name] = [
+              'tip' => ['#markup' => $tip],
+              'id' => $name,
+            ];
+          }
+        }
+      }
+    }
+    return $tips;
   }
 
 }

@@ -5,6 +5,7 @@
  * Contains install and update functions for Image and file test module.
  */
 
+use Drupal\Core\File\FileExists;
 use Drupal\file\Entity\File;
 use Drupal\user\RoleInterface;
 
@@ -40,7 +41,7 @@ function imagefile_install() {
     ) {
       try {
         $file_system = \Drupal::service('file_system');
-        $file_uri = $file_system->copy($props['src'], $file_target, \Drupal\Core\File\FileSystemInterface::EXISTS_RENAME);
+        $file_uri = $file_system->copy($props['src'], $file_target, FileExists::Rename);
       }
       catch (\Drupal\Core\File\Exception\FileException $e) {
         $file_uri = FALSE;

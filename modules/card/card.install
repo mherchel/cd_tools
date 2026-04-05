@@ -16,7 +16,7 @@ function card_install() {
   user_role_grant_permissions(RoleInterface::ANONYMOUS_ID, $perms);
   user_role_grant_permissions(RoleInterface::AUTHENTICATED_ID, $perms);
 
-  $themes_available = \Drupal::service('theme_handler')->rebuildThemeData();
+  $themes_available = \Drupal::service('extension.list.theme')->reset()->getList();
 
   if (!empty($themes_available['noscreenshot_theme'])) {
     \Drupal::service('theme_installer')->install(['noscreenshot_theme']);

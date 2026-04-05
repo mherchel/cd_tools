@@ -23,12 +23,12 @@ class LanguageAccessControlHandler extends DefaultLanguageAccessControlHandler {
         return parent::checkAccess($entity, $operation, $account);
 
       case 'update':
-        /* @var \Drupal\Core\Language\LanguageInterface $entity */
+        /** @var \Drupal\language\ConfigurableLanguageInterface $entity */
         return AccessResult::allowedIf(!$entity->isLocked())->addCacheableDependency($entity)
           ->andIf(parent::checkAccess($entity, $operation, $account)->orIf(AccessResult::allowedIfHasPermission($account, 'access dropbutton test routes')));
 
       case 'delete':
-        /* @var \Drupal\Core\Language\LanguageInterface $entity */
+        /** @var \Drupal\language\ConfigurableLanguageInterface $entity */
         return AccessResult::allowedIf(!$entity->isLocked())->addCacheableDependency($entity)
           ->andIf(AccessResult::allowedIf(!$entity->isDefault())->addCacheableDependency($entity))
           ->andIf(parent::checkAccess($entity, $operation, $account)->orIf(AccessResult::allowedIfHasPermission($account, 'access dropbutton test routes')));

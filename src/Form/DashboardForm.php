@@ -66,13 +66,12 @@ class DashboardForm extends FormBase {
     $this->moduleHandler = $module_handler;
     $this->moduleInstaller = $module_installer;
 
-    // Include system.admin.inc so we can use the sort callbacks.
-    $module_handler->loadInclude('system', 'inc', 'system.admin');
-
-    // Sort all modules by their names.
+    // Sort all modules by their info name.
     try {
       $modules = $module_extension_list->reset()->getList();
-      uasort($modules, 'system_sort_modules_by_info_name');
+      uasort($modules, function ($a, $b) {
+        return strcasecmp($a->info['name'] ?? $a->getName(), $b->info['name'] ?? $b->getName());
+      });
     }
     catch (InfoParserException $e) {
       $this->messenger()->addError($this->t('Modules could not be listed due to an error: %error', ['%error' => $e->getMessage()]));
@@ -85,6 +84,25 @@ class DashboardForm extends FormBase {
         return !empty($extension->info['claro_test']) && $extension->getType() === 'module';
       }
     );
+  }
+
+  /**
+   * Returns the short names of the modules required by the given extension.
+   *
+   * @param \Drupal\Core\Extension\Extension $extension
+   *   An extension from the module extension list.
+   *
+   * @return string[]
+   *   Required module short names (e.g. "node", "path").
+   */
+  protected function getRequiredModuleNames($extension): array {
+    $requires = [];
+    foreach ($extension->info['dependencies'] ?? [] as $dependency) {
+      // Dependencies are strings like "drupal:node" or "cd_core:cd_core".
+      $parts = explode(':', $dependency, 2);
+      $requires[] = $parts[1] ?? $parts[0];
+    }
+    return $requires;
   }
 
   /**
@@ -101,20 +119,20 @@ class DashboardForm extends FormBase {
     $enabled_modules = array_filter(
       $this->claroTestModules,
       function ($extension) {
-        return $extension->status;
+        return $this->moduleHandler->moduleExists($extension->getName());
       }
     );
     $installable_modules = array_filter(
       $this->claroTestModules,
       function ($extension) {
         $installable = TRUE;
-        foreach ($extension->requires as $dependency => $dependency_object) {
+        foreach ($this->getRequiredModuleNames($extension) as $dependency) {
           if (!isset($this->modules[$dependency])) {
             $installable = FALSE;
             break;
           }
         }
-        return !$extension->status && $installable;
+        return !$this->moduleHandler->moduleExists($extension->getName()) && $installable;
       }
     );
 
@@ -143,11 +161,10 @@ class DashboardForm extends FormBase {
       ];
 
       foreach ($this->claroTestModules as $name => $extension) {
-        $enabled = $extension->status;
+        $enabled = $this->moduleHandler->moduleExists($name);
         $locked = FALSE;
         // If this module requires other modules, check their availability.
-        /** @var \Drupal\Core\Extension\Dependency $dependency_object */
-        foreach ($extension->requires as $dependency => $dependency_object) {
+        foreach ($this->getRequiredModuleNames($extension) as $dependency) {
           if (!isset($this->modules[$dependency])) {
             $locked = TRUE;
             break;
@@ -227,7 +244,7 @@ class DashboardForm extends FormBase {
     $modules_installed_before = array_keys(array_filter(
       $this->claroTestModules,
       function ($extension) {
-        return !empty($extension->status);
+        return $this->moduleHandler->moduleExists($extension->getName());
       }
     ));
     $modules_installed_before = array_combine($modules_installed_before, $modules_installed_before);
@@ -265,8 +282,7 @@ class DashboardForm extends FormBase {
       // Filter out modules with missing dependecy.
       foreach (array_keys($modules_to_enable) as $module) {
         // If this module requires other modules, check their availability.
-        /** @var \Drupal\Core\Extension\Dependency $dependency_object */
-        foreach ($this->claroTestModules[$module]->requires as $dependency => $dependency_object) {
+        foreach ($this->getRequiredModuleNames($this->claroTestModules[$module]) as $dependency) {
           if (!isset($this->modules[$dependency])) {
             unset($modules_to_enable[$module]);
           }
@@ -323,15 +339,14 @@ class DashboardForm extends FormBase {
     $modules_to_enable = array_filter(
       $this->claroTestModules,
       function ($extension) {
-        return empty($extension->status);
+        return !$this->moduleHandler->moduleExists($extension->getName());
       }
     );
 
     // Filter out modules with missing dependecy.
     foreach (array_keys($modules_to_enable) as $module) {
       // If this module requires other modules, check their availability.
-      /** @var \Drupal\Core\Extension\Dependency $dependency_object */
-      foreach ($this->claroTestModules[$module]->requires as $dependency => $dependency_object) {
+      foreach ($this->getRequiredModuleNames($this->claroTestModules[$module]) as $dependency) {
         if (!isset($this->modules[$dependency])) {
           unset($modules_to_enable[$module]);
         }
@@ -355,7 +370,7 @@ class DashboardForm extends FormBase {
     $modules_to_enable = array_filter(
       $this->claroTestModules,
       function ($extension) {
-        return !empty($extension->status);
+        return $this->moduleHandler->moduleExists($extension->getName());
       }
     );
 
@@ -382,10 +397,7 @@ class DashboardForm extends FormBase {
       return FALSE;
     }
 
-    if (
-      empty($reasons) &&
-      $this->moduleInstaller->uninstall($modules)
-    ) {
+    if ($this->moduleInstaller->uninstall($modules)) {
       if ($all) {
         $this->messenger()->addStatus($this->t('Claro test modules are uninstalled.'));
       }

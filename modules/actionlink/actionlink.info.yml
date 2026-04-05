@@ -1,8 +1,7 @@
 name: 'Action Link Test'
 type: module
 description: 'Test page for the new Action Link component'
-core: 8.x
 package: Claro
 claro_test: true
 dependencies: {}
-core_version_requirement: ^8 || ^9 || ^10
+core_version_requirement: ^10.3 || ^11 || ^12

@@ -336,6 +336,8 @@ class TableDragTestForm extends FormBase {
 
       return 0;
     });
+
+    return $table_state;
   }
 
 }

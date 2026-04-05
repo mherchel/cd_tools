@@ -2,8 +2,7 @@ name: 'Pager Test'
 type: module
 description: 'Test pages for pagers'
 package: Claro
-core: 8.x
 claro_test: true
 dependencies:
   - drupal:views
-core_version_requirement: ^8 || ^9 || ^10
+core_version_requirement: ^10.3 || ^11 || ^12

@@ -1,7 +1,6 @@
 name: 'Toolbar Test'
 type: module
 description: 'Makes toolbar and some admin routes accessible by anonymous users'
-core: 8.x
 package: Claro
 claro_test: true
 dependencies:
@@ -12,4 +11,4 @@ dependencies:
   - drupal:toolbar
   - drupal:tour
   - drupal:workspaces
-core_version_requirement: ^8 || ^9 || ^10
+core_version_requirement: ^10.3 || ^11 || ^12

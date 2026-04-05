@@ -1,11 +1,10 @@
 name: Exposed form
 type: module
 description: Test pages for Views exposed form and Views bulk operations form
-core: 8.x
 package: Claro
 claro_test: true
 dependencies:
   - cd_core:lang_hebrew
   - cd_core:cd_node
   - core:views
-core_version_requirement: ^8 || ^9 || ^10
+core_version_requirement: ^10.3 || ^11 || ^12

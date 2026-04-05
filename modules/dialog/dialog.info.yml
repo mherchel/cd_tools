@@ -1,9 +1,8 @@
 name: 'Dialog Test'
 type: module
 description: 'Test page with Dialog examples'
-core: 8.x
 package: Claro
 claro_test: true
 dependencies:
   - core:filter
-core_version_requirement: ^8 || ^9 || ^10
+core_version_requirement: ^10.3 || ^11 || ^12
