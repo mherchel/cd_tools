@@ -4,24 +4,3 @@
  * @file
  * Contains code for Page title test module.
  */
-
-use Drupal\Core\Url;
-
-/**
- * Implements hook_toolbar().
- */
-function title_shortcut_toolbar() {
-  $items['title_shortcut'] = [
-    '#type' => 'toolbar_item',
-    'tab' => [
-      '#type' => 'link',
-      '#title' => t('Page title'),
-      // The filter.tips route was removed in Drupal 12. Use <front> as a
-      // safe no-op target for this test toolbar link.
-      '#url' => Url::fromRoute('<front>'),
-    ],
-    '#weight' => 118,
-  ];
-
-  return $items;
-}

@@ -6,5 +6,4 @@ claro_test: true
 dependencies:
   - cd_tools:tab
   - drupal:shortcut
-  - drupal:toolbar
 core_version_requirement: ^10.3 || ^11 || ^12
