@@ -189,15 +189,44 @@ function dropbutton_form_language_admin_overview_form_alter(&$form, FormStateInt
     '#links' => $dropbutton_links,
   ];
 
-  // Dummy dropbutton links out of table.
+  // Small variants of the single and multiple link dropbuttons. These render
+  // with the `dropbutton--small` class via the `#dropbutton_type` property,
+  // exercising each theme's small-variant CSS path alongside the default
+  // size so regressions in either variant are visually obvious.
+  $form['actions']['dropbutton_single_small'] = [
+    '#type' => $dropbutton_type,
+    '#dropbutton_type' => 'small',
+    '#links' => [
+      'single_small' => [
+        'title' => t('Single link (small)'),
+        'url' => Url::fromRoute('<current>'),
+      ],
+    ],
+  ];
+  $form['actions']['dropbutton_small'] = [
+    '#type' => $dropbutton_type,
+    '#dropbutton_type' => 'small',
+    '#links' => array_map(
+      static function (array $link): array {
+        $link['title'] = t('@label (small)', ['@label' => $link['title']]);
+        return $link;
+      },
+      $dropbutton_links,
+    ),
+  ];
+
+  // Dummy dropbutton links out of table. Default and small variants are
+  // rendered side by side so the two sizes can be compared directly.
   $form['dropbuttons_wrapper'] = [
     '#type' => 'container',
     'title' => [
       '#type' => 'item',
-      '#plain_text' => t('Links out of table'),
+      '#plain_text' => t('Links out of table (default and small variants)'),
     ],
     'single' => $form['actions']['dropbutton_single'],
     'multiple' => $form['actions']['dropbutton'],
+    'single_small' => $form['actions']['dropbutton_single_small'],
+    'multiple_small' => $form['actions']['dropbutton_small'],
   ];
 }
 
