@@ -12,14 +12,7 @@ dependencies:
     - field.field.contact_message.presuf_formatted.presuf_formatted_suf
     - field.field.contact_message.presuf_formatted.presuf_formatted_suf_m
   module:
-    - field_layout
-    - layout_discovery
     - text
-third_party_settings:
-  field_layout:
-    id: layout_onecol
-    settings:
-      label: ''
 id: contact_message.presuf_formatted.default
 targetEntityType: contact_message
 bundle: presuf_formatted

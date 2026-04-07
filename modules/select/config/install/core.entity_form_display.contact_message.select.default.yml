@@ -9,11 +9,6 @@ dependencies:
     - field.field.contact_message.select.select_single_disabled
   module:
     - cd_tools
-    - field_layout
-third_party_settings:
-  field_layout:
-    id: side_by_side
-    settings: {  }
 id: contact_message.select.default
 targetEntityType: contact_message
 bundle: select
@@ -24,25 +19,25 @@ content:
     settings: {  }
     third_party_settings: {  }
     type: options_select
-    region: main
+    region: content
   select_multiple_disabled:
     weight: 3
     settings: {  }
     third_party_settings: {  }
     type: options_select
-    region: main
+    region: content
   select_single:
     weight: 0
     settings: {  }
     third_party_settings: {  }
     type: options_select
-    region: main
+    region: content
   select_single_disabled:
     weight: 1
     settings: {  }
     third_party_settings: {  }
     type: options_select
-    region: main
+    region: content
 hidden:
   copy: true
   langcode: true

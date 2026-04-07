@@ -36,9 +36,6 @@ rendering differences.
 - **`hook_entity_type_alter()`** — registers `ContactFormAccessControlHandler`
   on `contact_form` entities so test contact forms ship open to anonymous
   users for test access.
-- **`side_by_side` layout plugin** — a two-column layout used by several
-  form-widget test submodules to render default vs. disabled widgets side
-  by side for visual comparison.
 - **Three test themes** — fixtures used to exercise the theme admin UI:
   `noscreenshot_theme` and `noscreenshot_2_theme` (themes without
   screenshots) and `incompatible_theme` (intentionally pinned to
@@ -106,7 +103,7 @@ with its test route, done.
 
 Many form-widget test submodules depend on other cd_tools submodules as
 fixtures (e.g., most depend on the root `cd_tools` module for the
-`side_by_side` layout plugin and contact-form access handler; some depend
+contact-form access handler; some depend
 on `cd_tools:cd_node` for the `cd` content type, `cd_tools:lang_hebrew`
 for RTL fixtures, or `cd_tools:testfilters` for text format fixtures).
 Drupal resolves these automatically when enabling submodules — you don't
@@ -122,7 +119,6 @@ on. Install from contrib as needed:
 
 ```
 ddev composer require drupal/contact       # checkboxradio, fieldcardinality, imagefile, presuf, select, textarea, textform
-ddev composer require drupal/field_layout  # same set as contact
 ```
 
 If these aren't installed, the dependent submodules simply won't enable.

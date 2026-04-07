@@ -5,40 +5,11 @@ namespace Drupal\button\Form;
 use Drupal\Core\Form\FormBase;
 use Drupal\Core\Form\FormStateInterface;
 use Drupal\Core\Url;
-use Symfony\Component\DependencyInjection\ContainerInterface;
-use Drupal\Core\Layout\LayoutPluginManagerInterface;
-use Drupal\Core\Render\Element;
 
 /**
  * Ships test page for tables.
  */
 class ButtonTestForm extends FormBase {
-
-  /**
-   * The layout plugin manager.
-   *
-   * @var \Drupal\Core\Layout\LayoutPluginManagerInterface
-   */
-  protected $layoutPluginManager;
-
-  /**
-   * Constructs the Button Test form.
-   *
-   * @param \Drupal\Core\Layout\LayoutPluginManagerInterface $layout_plugin_manager
-   *   The layout plugin manager.
-   */
-  public function __construct(LayoutPluginManagerInterface $layout_plugin_manager) {
-    $this->layoutPluginManager = $layout_plugin_manager;
-  }
-
-  /**
-   * {@inheritdoc}
-   */
-  public static function create(ContainerInterface $container) {
-    return new static(
-      $container->get('plugin.manager.core.layout')
-    );
-  }
 
   /**
    * {@inheritdoc}
@@ -189,7 +160,6 @@ class ButtonTestForm extends FormBase {
     $form['node_edit'] = [
       '#type' => 'container',
       '#weight' => 4,
-      '#group' => 'content_bottom',
       '#attributes' => ['class' => ['trailer']],
     ];
     $form['node_edit']['title'] = [
@@ -222,7 +192,6 @@ class ButtonTestForm extends FormBase {
     $form['confirm_form'] = [
       '#type' => 'container',
       '#weight' => 5,
-      '#group' => 'content_bottom',
       '#attributes' => ['class' => ['trailer']],
     ];
     $form['confirm_form']['title'] = [
@@ -248,29 +217,6 @@ class ButtonTestForm extends FormBase {
         ],
       ]),
     ];
-
-    // Use side-by-side layout if it is available.
-    if ($sbs_layout_definition = $this->layoutPluginManager->getDefinition('side_by_side', FALSE)) {
-      $sbs_layout = $this->layoutPluginManager->createInstance('side_by_side');
-      $fill = [];
-      $fill['#process'][] = '\Drupal\Core\Render\Element\RenderElementBase::processGroup';
-      $fill['#pre_render'][] = '\Drupal\Core\Render\Element\RenderElementBase::preRenderGroup';
-      // Add the regions to the $build in the correct order.
-      $regions = array_fill_keys($sbs_layout_definition->getRegionNames(), $fill);
-
-      foreach (Element::children($form) as $elem_key) {
-        if (!empty($form[$elem_key]['region']) && empty($form[$elem_key]['#group'])) {
-          $form[$elem_key]['#group'] = $form[$elem_key]['region'];
-          continue;
-        }
-        if (!empty($form[$elem_key]['#group'])) {
-          continue;
-        }
-        $form[$elem_key]['#group'] = $sbs_layout_definition->getDefaultRegion();
-      }
-
-      $form['_layout'] = $sbs_layout->build($regions);
-    }
 
     return $form;
   }

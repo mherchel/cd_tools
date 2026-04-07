@@ -6,6 +6,5 @@ claro_test: true
 dependencies:
   - cd_tools:cd_tools
   - drupal:contact
-  - drupal:field_layout
   - drupal:options
 core_version_requirement: ^10.3 || ^11 || ^12

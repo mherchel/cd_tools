@@ -12,12 +12,7 @@ dependencies:
     - field.field.contact_message.checkbox_radio.radios
     - field.field.contact_message.checkbox_radio.radios_disabled
   module:
-    - field_layout
     - cd_tools
-third_party_settings:
-  field_layout:
-    id: side_by_side
-    settings: {  }
 id: contact_message.checkbox_radio.default
 targetEntityType: contact_message
 bundle: checkbox_radio
@@ -29,52 +24,52 @@ content:
       display_label: true
     third_party_settings: {  }
     type: boolean_checkbox
-    region: main
+    region: content
   checkbox_disabled:
     weight: 3
     settings:
       display_label: true
     third_party_settings: {  }
     type: boolean_checkbox
-    region: main
+    region: content
   checkbox_hidden_label:
     weight: 0
     settings:
       display_label: true
     third_party_settings: {  }
     type: boolean_checkbox
-    region: main
+    region: content
   checkbox_hidden_label_disabled:
     weight: 1
     settings:
       display_label: true
     third_party_settings: {  }
     type: boolean_checkbox
-    region: main
+    region: content
   checkboxes:
     weight: 4
     settings: {  }
     third_party_settings: {  }
     type: options_buttons
-    region: main
+    region: content
   checkboxes_disabled:
     weight: 5
     settings: {  }
     third_party_settings: {  }
     type: options_buttons
-    region: main
+    region: content
   radios:
     weight: 6
     settings: {  }
     third_party_settings: {  }
     type: options_buttons
-    region: main
+    region: content
   radios_disabled:
     weight: 7
     settings: {  }
     third_party_settings: {  }
     type: options_buttons
-    region: main
+    region: content
 hidden:
   copy: true
   langcode: true
