@@ -27,7 +27,7 @@ function _lang_hebrew_add_interface_language_switcher_blocks(array $themes) {
 
     foreach ($themes as $theme_name) {
       $values = $block_values_default + [
-        'id' => $theme_name . '_language_switcher_cd_tools',
+        'id' => $theme_name . '_language_switcher_theming_tools',
         'theme' => $theme_name,
       ];
 

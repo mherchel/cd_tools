@@ -1,5 +1,0 @@
-cd_navigation.configtest:
-  title: 'Nav config'
-  route_name: cd_navigation.configtest
-  menu_name: main
-  weight: 5

@@ -1,10 +1,10 @@
 name: 'Textarea Test'
 type: module
 description: 'Test form for plain and formatted textarea form items'
-package: 'CD Tools'
-claro_test: true
+package: 'Theming tools'
+theming_test: true
 dependencies:
-  - cd_tools:cd_tools
+  - theming_tools:theming_tools
   - drupal:ckeditor5
   - drupal:contact
   - drupal:field_layout

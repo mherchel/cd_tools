@@ -1,6 +1,6 @@
 <?php
 
-namespace Drupal\Tests\cd_tools\Functional;
+namespace Drupal\Tests\theming_tools\Functional;
 
 use Drupal\Tests\BrowserTestBase;
 
@@ -16,7 +16,7 @@ class ContactFormPermissionTest extends BrowserTestBase {
    *
    * @var array
    */
-  public static $modules = ['block', 'contact_test', 'cd_tools'];
+  public static $modules = ['block', 'contact_test', 'theming_tools'];
 
   /**
    * {@inheritdoc}

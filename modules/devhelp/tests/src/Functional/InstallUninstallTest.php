@@ -9,7 +9,7 @@ use Drupal\user\Entity\Role;
  * Install/uninstall devhelp module and confirm the expected changes.
  *
  * @group devhelp
- * @group cd_tools
+ * @group theming_tools
  */
 class InstallUninstallTest extends ModuleTestBase {
 

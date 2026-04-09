@@ -1,16 +1,16 @@
 <?php
 
-namespace Drupal\Tests\cd_tools\Functional;
+namespace Drupal\Tests\theming_tools\Functional;
 
 use Drupal\Core\Url;
 use Drupal\Tests\BrowserTestBase;
 
 /**
- * Tests that Clarodist Tools does not break Drupal.
+ * Tests that Theming Tools does not break Drupal.
  *
- * @group cd_tools
+ * @group theming_tools
  */
-class CdToolsLoadTest extends BrowserTestBase {
+class ThemingToolsLoadTest extends BrowserTestBase {
 
   /**
    * Modules to enable.
@@ -18,13 +18,13 @@ class CdToolsLoadTest extends BrowserTestBase {
    * @var string[]
    */
   public static $modules = [
-    'cd_tools',
+    'theming_tools',
   ];
 
   /**
    * Tests that the project does not breaks Drupal.
    */
-  public function testCdToolsInstall() {
+  public function testThemingToolsInstall() {
     // Test that front page loads.
     $url_front = Url::fromRoute('<front>');
     $this->drupalGet($url_front);

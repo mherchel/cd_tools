@@ -15,7 +15,7 @@ dependencies:
     - field.field.contact_message.imagefile_file.imagefile_file_req_dis
     - image.style.thumbnail
   module:
-    - cd_tools
+    - theming_tools
     - file
     - image
 third_party_settings:

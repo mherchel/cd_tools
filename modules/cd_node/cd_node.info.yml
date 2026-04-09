@@ -1,9 +1,0 @@
-name: 'Claro test node'
-type: module
-description: 'Test node for claro development helper modules'
-package: 'CD Tools'
-claro_test: false
-dependencies:
-  - drupal:node
-  - drupal:path
-core_version_requirement: ^10.3 || ^11 || ^12

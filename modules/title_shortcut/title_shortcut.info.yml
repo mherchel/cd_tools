@@ -1,9 +1,9 @@
 name: 'Page Title Test'
 type: module
 description: 'Tests page title with shortcuts'
-package: 'CD Tools'
-claro_test: true
+package: 'Theming tools'
+theming_test: true
 dependencies:
-  - cd_tools:tab
+  - theming_tools:tab
   - drupal:shortcut
 core_version_requirement: ^10.3 || ^11 || ^12

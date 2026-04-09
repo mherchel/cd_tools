@@ -3,11 +3,11 @@
  * Captures autocomplete with different states.
  */
 module.exports = {
-  "@tags": ["claro"],
+  "@tags": ["theming-tools"],
   before(browser) {
     if (browser.drupalInstall) {
       browser.drupalInstall({
-        installProfile: "clarodist"
+        installProfile: "theming_tools"
       });
     }
   },
@@ -46,7 +46,7 @@ module.exports = {
         .setValue('[name="autocomplete_multipe[0][country]"]', "gf")
         .waitForElementVisible(".ui-autocomplete:last-of-type", 5000)
         .click(".ui-autocomplete:last-of-type .ui-menu-item-wrapper:last-child")
-        .click('[name="claro-autocomplete-country_add_more"]')
+        .click('[name="theming-autocomplete-country_add_more"]')
         .waitForElementVisible(
           '[name="autocomplete_multipe[1][country]"]',
           5000
@@ -54,7 +54,7 @@ module.exports = {
         .setValue('[name="autocomplete_multipe[1][country]"]', "ee")
         .waitForElementVisible(".ui-autocomplete:last-of-type", 5000)
         .click(".ui-autocomplete:last-of-type .ui-menu-item-wrapper:last-child")
-        .click('[name="claro-autocomplete-country_add_more"]')
+        .click('[name="theming-autocomplete-country_add_more"]')
         .waitForElementVisible(
           '[name="autocomplete_multipe[2][country]"]',
           5000

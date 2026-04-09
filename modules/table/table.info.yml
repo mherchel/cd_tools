@@ -1,8 +1,8 @@
 name: 'Table Test'
 type: module
 description: 'Test pages for table component'
-package: 'CD Tools'
-claro_test: true
+package: 'Theming tools'
+theming_test: true
 dependencies:
   - drupal:field_ui
   - drupal:node

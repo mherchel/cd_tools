@@ -1,11 +1,11 @@
 name: 'Dropbutton Test'
 type: module
 description: 'Test pages for Dropbutton (or Operations) component'
-package: 'CD Tools'
-claro_test: true
+package: 'Theming tools'
+theming_test: true
 dependencies:
-  - cd_tools:cd_node
-  - cd_tools:lang_hebrew
+  - theming_tools:tt_node
+  - theming_tools:lang_hebrew
   - core:node
   - core:field_ui
   - core:views_ui

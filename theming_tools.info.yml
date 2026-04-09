@@ -1,0 +1,6 @@
+name: 'Theming Tools'
+type: module
+description: "Dashboard and markup generator test modules for admin theme development"
+package: 'Theming tools'
+dependencies: {}
+core_version_requirement: ^10.3 || ^11 || ^12

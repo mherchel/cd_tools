@@ -1,8 +1,8 @@
 name: 'Dialog Test'
 type: module
 description: 'Test page with Dialog examples'
-package: 'CD Tools'
-claro_test: true
+package: 'Theming tools'
+theming_test: true
 dependencies:
   - core:filter
 core_version_requirement: ^10.3 || ^11 || ^12

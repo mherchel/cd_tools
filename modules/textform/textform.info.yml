@@ -1,11 +1,11 @@
 name: 'Textfield Test'
 type: module
 description: 'Test form for text-like form items'
-package: 'CD Tools'
-claro_test: true
+package: 'Theming tools'
+theming_test: true
 dependencies:
-  - cd_tools:cd_tools
-  - cd_tools:textfixtures
+  - theming_tools:theming_tools
+  - theming_tools:textfixtures
   - drupal:contact
   - drupal:datetime
   - drupal:datetime_range

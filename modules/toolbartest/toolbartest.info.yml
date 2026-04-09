@@ -1,8 +1,8 @@
 name: 'Toolbar Test'
 type: module
 description: 'Makes toolbar and some admin routes accessible by anonymous users'
-package: 'CD Tools'
-claro_test: true
+package: 'Theming tools'
+theming_test: true
 dependencies:
   - drupal:filter
   - drupal:help

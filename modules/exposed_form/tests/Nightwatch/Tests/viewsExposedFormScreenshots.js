@@ -3,11 +3,11 @@
  * Captures views exposed form with different states.
  */
 module.exports = {
-  "@tags": ["claro"],
+  "@tags": ["theming-tools"],
   before(browser) {
     if (browser.drupalInstall) {
       browser.drupalInstall({
-        installProfile: "clarodist"
+        installProfile: "theming_tools"
       });
     }
   },

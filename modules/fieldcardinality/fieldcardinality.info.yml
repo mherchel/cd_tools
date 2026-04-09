@@ -1,10 +1,10 @@
 name: 'Field Cardinality Test'
 type: module
 description: 'Test form for the widget of fields with multiple items'
-package: 'CD Tools'
-claro_test: true
+package: 'Theming tools'
+theming_test: true
 dependencies:
-  - cd_tools:cd_tools
+  - theming_tools:theming_tools
   - drupal:contact
   - drupal:field_layout
   - drupal:text

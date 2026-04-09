@@ -2,17 +2,17 @@
 // @codingStandardsIgnoreFile
 
 /**
- * This file was generated via php core/scripts/generate-proxy-class.php 'Drupal\cd_node\CdNodeUninstallValidator' "profiles/clarodist/modules/cd_node/src".
+ * This file was generated via php core/scripts/generate-proxy-class.php 'Drupal\tt_node\TtNodeUninstallValidator' "modules/theming_tools/modules/tt_node/src".
  */
 
-namespace Drupal\cd_node\ProxyClass {
+namespace Drupal\tt_node\ProxyClass {
 
     /**
-     * Provides a proxy class for \Drupal\cd_node\CdNodeUninstallValidator.
+     * Provides a proxy class for \Drupal\tt_node\TtNodeUninstallValidator.
      *
      * @see \Drupal\Component\ProxyBuilder
      */
-    class CdNodeUninstallValidator implements \Drupal\Core\Extension\ModuleUninstallValidatorInterface
+    class TtNodeUninstallValidator implements \Drupal\Core\Extension\ModuleUninstallValidatorInterface
     {
 
         use \Drupal\Core\DependencyInjection\DependencySerializationTrait;
@@ -27,7 +27,7 @@ namespace Drupal\cd_node\ProxyClass {
         /**
          * The real proxied service, after it was lazy loaded.
          *
-         * @var \Drupal\cd_node\CdNodeUninstallValidator
+         * @var \Drupal\tt_node\TtNodeUninstallValidator
          */
         protected $service;
 

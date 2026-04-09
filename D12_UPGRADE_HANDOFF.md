@@ -1,9 +1,9 @@
-# cd_core + cd_tools → Drupal 12 Upgrade — Hand-off
+# cd_core + theming_tools → Drupal 12 Upgrade — Hand-off
 
 ## Result
 
 - **cd_core**: fully upgraded. All 7 submodules + 2 test themes enable cleanly on Drupal 12-dev. `incompatible_theme` left at `^7` as it's a deliberate test fixture.
-- **cd_tools**: 28 of 29 submodules enabled. Only `toolbartest` skipped (depends on `tour`, which is removed from core).
+- **theming_tools**: 28 of 29 submodules enabled. Only `toolbartest` skipped (depends on `tour`, which is removed from core).
 - **phpstan error count**: 267 → 231 (all 36 removed errors were real D12 deprecations; the remaining 231 are style lints — `missingType.return`, unused constructor params, test-class attribute requirements — which are out of scope per "install + deprecations" goal).
 
 ## Changes to `modules/cd_core`
@@ -11,7 +11,7 @@
 **Metadata (10 files):** dropped `core: 8.x`, bumped `core_version_requirement: ^8 || ^9` → `^10.3 || ^11 || ^12` in:
 
 - `cd_core.info.yml`, `composer.json`
-- `modules/cd_node/cd_node.info.yml`
+- `modules/tt_node/tt_node.info.yml`
 - `modules/devhelp/devhelp.info.yml`
 - `modules/lang_hebrew/lang_hebrew.info.yml`
 - `modules/pointertracker/pointertracker.info.yml`
@@ -29,9 +29,9 @@
 - `src/Plugin/Condition/ToolbarAccess.php` — `@Condition` annotation: deprecated `context =` key → `context_definitions =`; fixed duplicate `#default_value` array key (the second one was clearly meant to be `#description`)
 - `modules/testfilters/config/install/editor.editor.cd_basic_html.yml` — rewrote as a CKEditor 5 editor config matching the `cd_basic_html` filter format's allowed HTML
 
-## Changes to `modules/cd_tools`
+## Changes to `modules/theming_tools`
 
-**Metadata (30 files):** same pattern — dropped `core: 8.x`, bumped `core_version_requirement: ^8 || ^9 || ^10` → `^10.3 || ^11 || ^12` across `cd_tools.info.yml`, `composer.json`, and all 28 submodule `.info.yml` files. `modules/textarea/textarea.info.yml` additionally switched `drupal:ckeditor` → `drupal:ckeditor5`.
+**Metadata (30 files):** same pattern — dropped `core: 8.x`, bumped `core_version_requirement: ^8 || ^9 || ^10` → `^10.3 || ^11 || ^12` across `theming_tools.info.yml`, `composer.json`, and all 28 submodule `.info.yml` files. `modules/textarea/textarea.info.yml` additionally switched `drupal:ckeditor` → `drupal:ckeditor5`.
 
 **Code fixes:**
 
@@ -72,4 +72,4 @@ Recommended cleanup: `git checkout composer.json composer.lock composer/Metapack
 ## What to commit where
 
 - **cd_core repo branch**: 10 info.yml files, composer.json, 4 .php files (`ConfigOverrider`, `ThemeSwitcherForm`, `ToolbarAccess`), 1 editor config YAML, 2 theme info.yml files. Zero git operations performed by the assistant — ready to stage and commit.
-- **cd_tools repo branch**: 29 info.yml files, composer.json, 8 .php files, 1 .install file, 1 routing.yml, 1 new `TabController.php`. Zero git operations performed by the assistant — ready to stage and commit.
+- **theming_tools repo branch**: 29 info.yml files, composer.json, 8 .php files, 1 .install file, 1 routing.yml, 1 new `TabController.php`. Zero git operations performed by the assistant — ready to stage and commit.

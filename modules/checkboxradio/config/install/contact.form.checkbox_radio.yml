@@ -5,7 +5,7 @@ dependencies:
     module:
       - checkboxradio
 id: checkbox_radio
-label: 'Claro Checkboxes and Radios'
+label: 'Theming Checkboxes and Radios'
 recipients:
   - website@example.com
 reply: ''

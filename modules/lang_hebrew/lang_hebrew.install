@@ -21,7 +21,7 @@ function lang_hebrew_uninstall() {
   $block_instances = \Drupal::service('entity_type.manager')->getStorage('block')->loadMultiple();
 
   foreach ($block_instances as $block_id => $block) {
-    if (strpos($block_id, '_language_switcher_cd_tools')) {
+    if (strpos($block_id, '_language_switcher_theming_tools')) {
       $block->delete();
     }
   }

@@ -19,7 +19,7 @@ https://github.com/zolhorvath/details.git`
 
 ## Suggested extensions
 
-- Claro distribution
+- Theming Tools
   https://github.com/zolhorvath/clarodist/
 
 

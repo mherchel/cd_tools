@@ -1,6 +1,6 @@
 services:
-  cd_node.uninstall_validator:
-    class: Drupal\cd_node\CdNodeUninstallValidator
+  tt_node.uninstall_validator:
+    class: Drupal\tt_node\TtNodeUninstallValidator
     tags:
       - { name: module_install.uninstall_validator }
     arguments: ['@entity_type.manager', '@string_translation']

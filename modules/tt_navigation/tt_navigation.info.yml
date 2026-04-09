@@ -1,7 +1,7 @@
 name: 'Navigation Test'
 type: module
 description: 'Test pages for navigation component'
-package: 'CD Tools'
-claro_test: true
+package: 'Theming tools'
+theming_test: true
 dependencies: {  }
 core_version_requirement: ^10.3 || ^11 || ^12

@@ -1,11 +1,11 @@
-# cd_core + cd_tools → Drupal 12 Upgrade Plan
+# cd_core + theming_tools → Drupal 12 Upgrade Plan
 
 ## Context
 
 - Drupal core is on `main` (future D12), running under DDEV (`type: drupal12`, PHP 8.5).
-- `cd_tools` (~28 submodules, root in `modules/cd_tools`) is the "Clarodist Tools" markup-generator module suite for Claro theme development.
-- `cd_core` (7 submodules + 3 test themes, root in `modules/cd_core`) is a hard dependency of 12 `cd_tools` submodules.
-- Current state of both: `core: 8.x` legacy key + `core_version_requirement: ^8 || ^9` (cd_core) / `^8 || ^9 || ^10` (cd_tools). Neither currently claims D11/D12 compat.
+- `theming_tools` (~28 submodules, root in `modules/theming_tools`) is the "Theming Tools" markup-generator module suite for admin theme development.
+- `cd_core` (7 submodules + 3 test themes, root in `modules/cd_core`) is a hard dependency of 12 `theming_tools` submodules.
+- Current state of both: `core: 8.x` legacy key + `core_version_requirement: ^8 || ^9` (cd_core) / `^8 || ^9 || ^10` (theming_tools). Neither currently claims D11/D12 compat.
 
 ## Scope & Decisions
 
@@ -19,9 +19,9 @@
 ## Known Gotchas
 
 - `cd_core/themes/incompatible_theme/incompatible_theme.info.yml` has `core_version_requirement: ^7` **intentionally** as a test fixture for the "incompatible theme" code path. **Do not touch.**
-- 12 `cd_tools` submodules hard-depend on `cd_core:*` — cd_core must be upgraded first.
+- 12 `theming_tools` submodules hard-depend on `cd_core:*` — cd_core must be upgraded first.
 - Several submodules ship `config/install/*.yml` — watch for config schema failures at enable time: `fieldcardinality`, `imagefile`, `textform`, `textarea`, `select`, `table`, `tabledrag`, `presuf`, `checkboxradio`.
-- No annotation-based plugins (`@Block`, `@FieldFormatter`, etc.) found in cd_tools — fewer plugin-discovery deprecations to worry about.
+- No annotation-based plugins (`@Block`, `@FieldFormatter`, etc.) found in theming_tools — fewer plugin-discovery deprecations to worry about.
 
 ---
 
@@ -40,7 +40,7 @@
 
 ## Phase 1 — Metadata sweep
 
-**Order matters: cd_core first, then cd_tools.**
+**Order matters: cd_core first, then theming_tools.**
 
 ### cd_core
 - Root `cd_core.info.yml` + 7 submodule `*.info.yml` + 2 test theme `*.info.yml`:
@@ -49,11 +49,11 @@
 - Leave `themes/incompatible_theme/incompatible_theme.info.yml` untouched.
 - Update `cd_core/composer.json` `drupal/core` constraint to match.
 
-### cd_tools
-- Root `cd_tools.info.yml` + all 28 submodule `*.info.yml`:
+### theming_tools
+- Root `theming_tools.info.yml` + all 28 submodule `*.info.yml`:
   - Remove legacy `core: 8.x`.
   - Change `core_version_requirement: ^8 || ^9 || ^10` → `^10.3 || ^11 || ^12`.
-- Update `cd_tools/composer.json` `drupal/core` constraint.
+- Update `theming_tools/composer.json` `drupal/core` constraint.
 - Audit `dependencies:` lists for modules renamed/removed in D11/D12 (e.g. toolbar → navigation experience, workspaces → workspaces_ui).
 
 ## Phase 2 — Static analysis baseline
@@ -61,13 +61,13 @@
 Capture output from both tools as the concrete deprecation to-do list:
 
 ```
-ddev exec vendor/bin/drupal-rector process modules/cd_core modules/cd_tools --dry-run
-ddev exec vendor/bin/phpstan analyse modules/cd_core modules/cd_tools --level=2 -c core/phpstan.neon.dist
+ddev exec vendor/bin/drupal-rector process modules/cd_core modules/theming_tools --dry-run
+ddev exec vendor/bin/phpstan analyse modules/cd_core modules/theming_tools --level=2 -c core/phpstan.neon.dist
 ```
 
 ## Phase 3 — Apply fixes
 
-**Order: cd_core first, then cd_tools.**
+**Order: cd_core first, then theming_tools.**
 
 1. Run rector for real; review diff.
 2. Hand-fix anything rector misses. Expected hotspots:
@@ -85,19 +85,19 @@ ddev exec vendor/bin/phpstan analyse modules/cd_core modules/cd_tools --level=2 
 ```
 ddev drush en cd_core -y
 # then cd_core submodules individually
-ddev drush en cd_tools -y
-# then cd_tools submodules individually
+ddev drush en theming_tools -y
+# then theming_tools submodules individually
 ```
 
-Fix runtime fatals and config-install schema errors as they surface. Dependency order: cd_core submodules must be enabled before the cd_tools submodules that depend on them.
+Fix runtime fatals and config-install schema errors as they surface. Dependency order: cd_core submodules must be enabled before the theming_tools submodules that depend on them.
 
 ## Phase 5 — Clean deprecation pass
 
 Re-run both tools; output should be clean:
 
 ```
-ddev exec vendor/bin/drupal-rector process modules/cd_core modules/cd_tools --dry-run
-ddev exec vendor/bin/phpstan analyse modules/cd_core modules/cd_tools --level=2 -c core/phpstan.neon.dist
+ddev exec vendor/bin/drupal-rector process modules/cd_core modules/theming_tools --dry-run
+ddev exec vendor/bin/phpstan analyse modules/cd_core modules/theming_tools --level=2 -c core/phpstan.neon.dist
 ```
 
 ## Phase 6 — Hand-off

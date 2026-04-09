@@ -66,7 +66,7 @@ class AutocompleteForm extends FormBase {
       '#autocomplete_route_name' => 'autocomplete.country_autocomplete',
     ];
 
-    $id_prefix = 'claro-autocomplete-country';
+    $id_prefix = 'theming-autocomplete-country';
     $wrapper_id = Html::getUniqueId($id_prefix . '-add-more-wrapper');
     $max = (int) $form_state->getTemporaryValue('delta') ?: 0;
 
@@ -123,7 +123,7 @@ class AutocompleteForm extends FormBase {
       ],
       '#attributes' => [
         'class' => [
-          'claro-autocomplete-add-more-submit',
+          'theming-autocomplete-add-more-submit',
           'form-item',
         ],
       ],

@@ -34,14 +34,14 @@ class PagerController extends ControllerBase {
       ],
     ];
 
-    $build['pager_claro'] = [
+    $build['pager_default'] = [
       'title' => [
         '#type' => 'container',
         '#attributes' => ['class' => ['leader', 'text-align-center']],
         'title' => [
           '#type' => 'html_tag',
           '#tag' => 'strong',
-          '#value' => $this->t("Claro's pager on Figma"),
+          '#value' => $this->t("Pager on Figma"),
         ],
       ],
       'pager' => [

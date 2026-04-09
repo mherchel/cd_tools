@@ -1,0 +1,9 @@
+theming_tools.dashboard:
+  path: /admin/modules/theming-tools
+  defaults:
+    _form: '\Drupal\theming_tools\Form\DashboardForm'
+    _title: 'Theming Tools Dashboard'
+  options:
+    _admin_route: TRUE
+  requirements:
+    _permission: 'administer modules'

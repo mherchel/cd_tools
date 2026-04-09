@@ -1,18 +1,18 @@
-# CD Tools — Claude Code Instructions
+# Theming Tools — Claude Code Instructions
 
-This is the Clarodist Tools (`cd_tools`) module — a regression-testing suite
+This is the Theming Tools (`theming_tools`) module — a regression-testing suite
 for Drupal admin themes. See `README.md` for the full submodule list,
 dependencies, and installation instructions.
 
 ## Architecture at a glance
 
-- **1 root module** (`cd_tools`) providing the dashboard form, auto-collect
+- **1 root module** (`theming_tools`) providing the dashboard form, auto-collect
   menu drawer, layout plugin, condition plugin, and contact-form access handler.
 - **35 submodules** under `modules/`, each exercising one UI component.
 - **3 test themes** under `themes/` (fixture themes for the Appearance admin page).
 - **1 layout plugin** (`side_by_side`) under `layouts/`.
 
-All test submodules are tagged `claro_test: true` in their `.info.yml`.
+All test submodules are tagged `theming_test: true` in their `.info.yml`.
 This flag drives both the dashboard form listing and the Navigation sidebar
 drawer auto-collection.
 
@@ -21,13 +21,13 @@ drawer auto-collection.
 ### Adding a new test submodule
 
 1. Create `modules/<name>/` with a standard `.info.yml`.
-2. Set `claro_test: true` and `package: 'CD Tools'` in the info.yml.
+2. Set `theming_test: true` and `package: 'Theming tools'` in the info.yml.
 3. Ship a `.links.menu.yml` with a menu link pointing at the submodule's
-   primary test route — the auto-collect hook in `cd_tools.module`
-   (`cd_tools_menu_links_discovered_alter`) will reparent it under the
-   "CD Tools" drawer in the admin menu automatically.
+   primary test route — the auto-collect hook in `theming_tools.module`
+   (`theming_tools_menu_links_discovered_alter`) will reparent it under the
+   "Theming Tools" drawer in the admin menu automatically.
 4. If the submodule needs the side-by-side layout, the contact-form access
-   handler, or other root-level features, declare `cd_tools:cd_tools` as
+   handler, or other root-level features, declare `theming_tools:theming_tools` as
    a dependency.
 
 No changes to the root module are needed. The new submodule shows up in the
@@ -35,20 +35,20 @@ dashboard form and navigation drawer automatically.
 
 ### Module dependency format
 
-Cross-submodule dependencies use the `cd_tools:<submodule>` format:
+Cross-submodule dependencies use the `theming_tools:<submodule>` format:
 ```yaml
 dependencies:
-  - cd_tools:cd_tools       # root module (layout, contact access handler)
-  - cd_tools:lang_hebrew    # RTL fixtures
-  - cd_tools:cd_node        # test content type
-  - cd_tools:testfilters    # text format fixtures
-  - cd_tools:textfixtures   # custom field types
-  - cd_tools:tab            # tab test routes (used by title_shortcut)
+  - theming_tools:theming_tools       # root module (layout, contact access handler)
+  - theming_tools:lang_hebrew    # RTL fixtures
+  - theming_tools:tt_node        # test content type
+  - theming_tools:testfilters    # text format fixtures
+  - theming_tools:textfixtures   # custom field types
+  - theming_tools:tab            # tab test routes (used by title_shortcut)
 ```
 
 ### Package name
 
-All modules in this suite use `package: 'CD Tools'`. This groups them
+All modules in this suite use `package: 'Theming tools'`. This groups them
 together on the Extend admin page (`/admin/modules`).
 
 ## Do not touch
@@ -56,7 +56,7 @@ together on the Extend admin page (`/admin/modules`).
 - **`themes/incompatible_theme/incompatible_theme.info.yml`** — intentionally
   pinned to `core_version_requirement: ^7`. This is a test fixture for the
   "incompatible theme" rendering path. Do not bump this constraint.
-- **`cd_node` has `claro_test: false`** — deliberately excluded from the
+- **`tt_node` has `theming_test: false`** — deliberately excluded from the
   dashboard/drawer. It's infrastructure (a content type fixture), not a
   test page.
 
@@ -107,7 +107,7 @@ be reintroduced:
 
 ## Module naming
 
-- The `cd_navigation` submodule is named that way (not `navigation`) to
+- The `tt_navigation` submodule is named that way (not `navigation`) to
   avoid a machine-name collision with Drupal core's `navigation` module.
   If adding new submodules, check that the machine name doesn't collide
   with any core module.
@@ -116,7 +116,7 @@ be reintroduced:
 
 - **PHPStan** is the primary static analysis tool:
   ```
-  ddev exec vendor/bin/phpstan analyse modules/cd_tools --level=2 --configuration=core/phpstan.neon.dist --no-progress
+  ddev exec vendor/bin/phpstan analyse modules/theming_tools --level=2 --configuration=core/phpstan.neon.dist --no-progress
   ```
   The core phpstan config emits many `missingType.return` lints on
   procedural hooks — these are style warnings, not D12 deprecations.
@@ -131,6 +131,6 @@ be reintroduced:
 ## Consolidation history
 
 This module was originally two separate repos (`cd_core` + `cd_tools`) by
-zolhorvath. They were consolidated into a single `cd_tools` module during
+zolhorvath. They were consolidated into a single `theming_tools` module during
 a D12 upgrade session. See `CONSOLIDATION_PLAN.md` and
 `D12_UPGRADE_HANDOFF.md` for the full migration history.

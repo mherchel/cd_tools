@@ -26,7 +26,7 @@ class MessageController extends ControllerBase {
     ];
     $message_types = [
       'status' => $this->t('A status message'),
-       // This is a custom type that's defined by Claro design.
+       // This is a custom type that's defined by the admin theme design.
       'info' => $this->t('An info message'),
       'warning' => $this->t('A warning message'),
       'error' => $this->t('An error message'),

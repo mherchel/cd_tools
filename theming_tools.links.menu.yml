@@ -1,0 +1,8 @@
+theming_tools.dashboard:
+  title: 'Theming Tools'
+  route_name: theming_tools.dashboard
+  description: 'Dashboard of theming test modules'
+  menu_name: admin
+  parent: system.admin
+  expanded: true
+  weight: 100

@@ -1,7 +1,7 @@
 name: 'Test filters'
 type: module
 description: 'Demo text filters and editors.'
-package: 'CD Tools'
+package: 'Theming tools'
 dependencies:
   - drupal:ckeditor5
 core_version_requirement: ^10.3 || ^11 || ^12

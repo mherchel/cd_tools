@@ -1,0 +1,5 @@
+theming_tools.dashboard:
+  route_name: theming_tools.dashboard
+  base_route: system.modules_list
+  title: 'Theming Tools Dashboard'
+  weight: -101

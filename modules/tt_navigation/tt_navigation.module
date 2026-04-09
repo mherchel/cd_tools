@@ -10,7 +10,7 @@ use Drupal\Core\Url;
 /**
  * Implements hook_preprocess_HOOK() for block.
  */
-function cd_navigation_preprocess_block(&$variables) {
+function tt_navigation_preprocess_block(&$variables) {
   if (
     $variables['plugin_id'] === 'system_main_block' &&
     \Drupal::routeMatch()->getRouteName() === 'system.admin'
@@ -34,17 +34,17 @@ function cd_navigation_preprocess_block(&$variables) {
 /**
  * Implements hook_toolbar().
  */
-function cd_navigation_toolbar() {
-  $items['cd_navigation_config'] = [
+function tt_navigation_toolbar() {
+  $items['tt_navigation_config'] = [
     '#type' => 'toolbar_item',
     'tab' => [
       '#type' => 'link',
       '#title' => t('Nav Config'),
-      '#url' => Url::fromRoute('cd_navigation.configtest'),
+      '#url' => Url::fromRoute('tt_navigation.configtest'),
     ],
     '#weight' => 105,
   ];
-  $items['cd_navigation_admin_tasks'] = [
+  $items['tt_navigation_admin_tasks'] = [
     '#type' => 'toolbar_item',
     'tab' => [
       '#type' => 'link',

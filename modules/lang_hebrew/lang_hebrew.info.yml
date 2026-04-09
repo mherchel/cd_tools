@@ -1,7 +1,7 @@
 name: Hebrew language
 type: module
 description: Adds Hebrew language and an interface language switcher block to every enabled theme
-package: 'CD Tools'
+package: 'Theming tools'
 dependencies:
   - drupal:block
   - drupal:language

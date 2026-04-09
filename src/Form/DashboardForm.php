@@ -1,6 +1,6 @@
 <?php
 
-namespace Drupal\cd_tools\Form;
+namespace Drupal\theming_tools\Form;
 
 use Drupal\Core\Extension\ModuleExtensionList;
 use Drupal\Core\Form\FormBase;
@@ -37,11 +37,11 @@ class DashboardForm extends FormBase {
   protected $modules;
 
   /**
-   * Claro Distribution test modules.
+   * Theming test modules.
    *
    * @var \Drupal\Core\Extension\Extension[]
    */
-  protected $claroTestModules;
+  protected $themingTestModules;
 
   /**
    * {@inheritdoc}
@@ -78,10 +78,10 @@ class DashboardForm extends FormBase {
       $modules = [];
     }
     $this->modules = $modules;
-    $this->claroTestModules = array_filter(
+    $this->themingTestModules = array_filter(
       $modules,
       function ($extension) {
-        return !empty($extension->info['claro_test']) && $extension->getType() === 'module';
+        return !empty($extension->info['theming_test']) && $extension->getType() === 'module';
       }
     );
   }
@@ -98,7 +98,7 @@ class DashboardForm extends FormBase {
   protected function getRequiredModuleNames($extension): array {
     $requires = [];
     foreach ($extension->info['dependencies'] ?? [] as $dependency) {
-      // Dependencies are strings like "drupal:node" or "cd_tools:cd_tools".
+      // Dependencies are strings like "drupal:node" or "theming_tools:theming_tools".
       $parts = explode(':', $dependency, 2);
       $requires[] = $parts[1] ?? $parts[0];
     }
@@ -109,7 +109,7 @@ class DashboardForm extends FormBase {
    * {@inheritdoc}
    */
   public function getFormId() {
-    return 'cd_tools_dashboard_form';
+    return 'theming_tools_dashboard_form';
   }
 
   /**
@@ -117,13 +117,13 @@ class DashboardForm extends FormBase {
    */
   public function buildForm(array $form, FormStateInterface $form_state) {
     $enabled_modules = array_filter(
-      $this->claroTestModules,
+      $this->themingTestModules,
       function ($extension) {
         return $this->moduleHandler->moduleExists($extension->getName());
       }
     );
     $installable_modules = array_filter(
-      $this->claroTestModules,
+      $this->themingTestModules,
       function ($extension) {
         $installable = TRUE;
         foreach ($this->getRequiredModuleNames($extension) as $dependency) {
@@ -136,11 +136,11 @@ class DashboardForm extends FormBase {
       }
     );
 
-    if (!empty($this->claroTestModules)) {
-      $form['claro_components'] = [
+    if (!empty($this->themingTestModules)) {
+      $form['theming_components'] = [
         '#type' => 'table',
         '#tableselect' => TRUE,
-        '#caption' => $this->t('Claro Test Modules'),
+        '#caption' => $this->t('Theming Test Modules'),
         '#header' => [
           [
             'data' => $this->t('Status'),
@@ -160,7 +160,7 @@ class DashboardForm extends FormBase {
         ],
       ];
 
-      foreach ($this->claroTestModules as $name => $extension) {
+      foreach ($this->themingTestModules as $name => $extension) {
         $enabled = $this->moduleHandler->moduleExists($name);
         $locked = FALSE;
         // If this module requires other modules, check their availability.
@@ -171,7 +171,7 @@ class DashboardForm extends FormBase {
           }
         }
 
-        $form['claro_components'][$name] = [
+        $form['theming_components'][$name] = [
           '#disabled' => $locked,
           '#attributes' => [
             'class' => $enabled ? ['color-success'] : [],
@@ -209,7 +209,7 @@ class DashboardForm extends FormBase {
     }
 
     foreach (array_keys($enabled_modules) as $module) {
-      $form['claro_components']['#default_value'][$module] = $module;
+      $form['theming_components']['#default_value'][$module] = $module;
     }
 
     $form['actions'] = ['#type' => 'actions'];
@@ -240,9 +240,9 @@ class DashboardForm extends FormBase {
    * {@inheritdoc}
    */
   public function submitForm(array &$form, FormStateInterface $form_state) {
-    $component_state_required = $form_state->getValue('claro_components');
+    $component_state_required = $form_state->getValue('theming_components');
     $modules_installed_before = array_keys(array_filter(
-      $this->claroTestModules,
+      $this->themingTestModules,
       function ($extension) {
         return $this->moduleHandler->moduleExists($extension->getName());
       }
@@ -254,8 +254,8 @@ class DashboardForm extends FormBase {
         return !empty($module_status);
       }
     );
-    $name_walk_callback = function (&$module_name, $module, $claro_modules) {
-      $module_name = $claro_modules[$module]->info['name'] ?? $module;
+    $name_walk_callback = function (&$module_name, $module, $theming_modules) {
+      $module_name = $theming_modules[$module]->info['name'] ?? $module;
     };
     $success_install = $success_uninstall = TRUE;
 
@@ -265,7 +265,7 @@ class DashboardForm extends FormBase {
     $modules_to_disable = array_diff($modules_installed_before, $modules_installed_after);
 
     if (!empty($modules_to_disable)) {
-      array_walk($modules_to_disable, $name_walk_callback, $this->claroTestModules);
+      array_walk($modules_to_disable, $name_walk_callback, $this->themingTestModules);
 
       if ($success_uninstall = $this->uninstallModules(array_keys($modules_to_disable))) {
         $this->messenger()->addStatus($this->uninstallMessage($modules_to_disable));
@@ -278,11 +278,11 @@ class DashboardForm extends FormBase {
     $modules_to_enable = array_diff($modules_installed_after, $modules_installed_before);
 
     if (!empty($modules_to_enable)) {
-      array_walk($modules_to_enable, $name_walk_callback, $this->claroTestModules);
+      array_walk($modules_to_enable, $name_walk_callback, $this->themingTestModules);
       // Filter out modules with missing dependecy.
       foreach (array_keys($modules_to_enable) as $module) {
         // If this module requires other modules, check their availability.
-        foreach ($this->getRequiredModuleNames($this->claroTestModules[$module]) as $dependency) {
+        foreach ($this->getRequiredModuleNames($this->themingTestModules[$module]) as $dependency) {
           if (!isset($this->modules[$dependency])) {
             unset($modules_to_enable[$module]);
           }
@@ -309,7 +309,7 @@ class DashboardForm extends FormBase {
   public function operationSubmit(array &$form, FormStateInterface $form_state) {
     $triggering_element = $form_state->getTriggeringElement();
     $module = $triggering_element['#name'];
-    $module_name = $this->claroTestModules[$module]->info['name'] ?? $module;
+    $module_name = $this->themingTestModules[$module]->info['name'] ?? $module;
 
     switch ($triggering_element['#operation']) {
       case 'install':
@@ -337,7 +337,7 @@ class DashboardForm extends FormBase {
    */
   public function bulkEnableSubmit(array &$form, FormStateInterface $form_state) {
     $modules_to_enable = array_filter(
-      $this->claroTestModules,
+      $this->themingTestModules,
       function ($extension) {
         return !$this->moduleHandler->moduleExists($extension->getName());
       }
@@ -346,7 +346,7 @@ class DashboardForm extends FormBase {
     // Filter out modules with missing dependecy.
     foreach (array_keys($modules_to_enable) as $module) {
       // If this module requires other modules, check their availability.
-      foreach ($this->getRequiredModuleNames($this->claroTestModules[$module]) as $dependency) {
+      foreach ($this->getRequiredModuleNames($this->themingTestModules[$module]) as $dependency) {
         if (!isset($this->modules[$dependency])) {
           unset($modules_to_enable[$module]);
         }
@@ -355,7 +355,7 @@ class DashboardForm extends FormBase {
 
     if (!empty($modules_to_enable)) {
       if ($this->moduleInstaller->install(array_keys($modules_to_enable))) {
-        $this->messenger()->addStatus($this->t('Every Claro test module is installed.'));
+        $this->messenger()->addStatus($this->t('Every theming test module is installed.'));
       }
       else {
         $this->messenger()->addError($this->installErrorMessage());
@@ -368,7 +368,7 @@ class DashboardForm extends FormBase {
    */
   public function bulkDisableSubmit(array &$form, FormStateInterface $form_state) {
     $modules_to_enable = array_filter(
-      $this->claroTestModules,
+      $this->themingTestModules,
       function ($extension) {
         return $this->moduleHandler->moduleExists($extension->getName());
       }
@@ -399,7 +399,7 @@ class DashboardForm extends FormBase {
 
     if ($this->moduleInstaller->uninstall($modules)) {
       if ($all) {
-        $this->messenger()->addStatus($this->t('Claro test modules are uninstalled.'));
+        $this->messenger()->addStatus($this->t('Theming test modules are uninstalled.'));
       }
       return TRUE;
     }

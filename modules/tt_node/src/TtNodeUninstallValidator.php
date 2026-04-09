@@ -1,6 +1,6 @@
 <?php
 
-namespace Drupal\cd_node;
+namespace Drupal\tt_node;
 
 use Drupal\Core\Entity\EntityTypeManagerInterface;
 use Drupal\Core\Extension\ModuleUninstallValidatorInterface;
@@ -8,9 +8,9 @@ use Drupal\Core\StringTranslation\StringTranslationTrait;
 use Drupal\Core\StringTranslation\TranslationInterface;
 
 /**
- * Prevents cd_node module from being uninstalled whilst any test node exist.
+ * Prevents tt_node module from being uninstalled whilst any test node exist.
  */
-class CdNodeUninstallValidator implements ModuleUninstallValidatorInterface {
+class TtNodeUninstallValidator implements ModuleUninstallValidatorInterface {
 
   use StringTranslationTrait;
 
@@ -22,7 +22,7 @@ class CdNodeUninstallValidator implements ModuleUninstallValidatorInterface {
   protected $entityTypeManager;
 
   /**
-   * Constructs a new CdNodeUninstallValidator.
+   * Constructs a new TtNodeUninstallValidator.
    *
    * @param \Drupal\Core\Entity\EntityTypeManagerInterface $entity_type_manager
    *   The entity type manager.
@@ -39,19 +39,19 @@ class CdNodeUninstallValidator implements ModuleUninstallValidatorInterface {
    */
   public function validate($module) {
     $reasons = [];
-    if ($module === 'cd_node' && $this->hasCdNodes()) {
-      $reasons[] = $this->t('To uninstall Claro test node, delete all test node content');
+    if ($module === 'tt_node' && $this->hasTtNodes()) {
+      $reasons[] = $this->t('To uninstall theming test node, delete all test node content');
     }
     return $reasons;
   }
 
   /**
-   * Determines if there is any cd_nodes or not.
+   * Determines if there is any tt_nodes or not.
    *
    * @return bool
-   *   TRUE if there are cd_nodes, FALSE otherwise.
+   *   TRUE if there are tt_nodes, FALSE otherwise.
    */
-  protected function hasCdNodes() {
+  protected function hasTtNodes() {
     $nodes = $this->entityTypeManager->getStorage('node')->getQuery()
       ->condition('type', 'cd')
       ->accessCheck(FALSE)

@@ -2,7 +2,7 @@
 
 /**
  * @file
- * Contains code for the Clarodist Tools module.
+ * Contains code for the Theming Tools module.
  */
 
 use Drupal\Component\Utility\Html;
@@ -12,15 +12,15 @@ use Drupal\Core\Render\Element;
  * Implements hook_menu_links_discovered_alter().
  *
  * Auto-collects every menu link provided by a module tagged with
- * `claro_test: true` in its info.yml and reparents it under the existing
- * cd_tools dashboard link. This turns the CD Tools menu entry into an
+ * `theming_test: true` in its info.yml and reparents it under the existing
+ * theming_tools dashboard link. This turns the Theming Tools menu entry into an
  * expandable drawer in the core Navigation sidebar that lists every
  * enabled test module's page, without any per-submodule maintenance: a
- * submodule just needs `claro_test: true` and its own `*.links.menu.yml`
+ * submodule just needs `theming_test: true` and its own `*.links.menu.yml`
  * entry and it will show up automatically.
  */
-function cd_tools_menu_links_discovered_alter(array &$links): void {
-  $parent_id = 'cd_tools.dashboard';
+function theming_tools_menu_links_discovered_alter(array &$links): void {
+  $parent_id = 'theming_tools.dashboard';
 
   // If the dashboard link isn't present (e.g. during early bootstrap before
   // this module's own link has been discovered), nothing to collect.
@@ -38,8 +38,8 @@ function cd_tools_menu_links_discovered_alter(array &$links): void {
     if (!$provider || !isset($module_list[$provider])) {
       continue;
     }
-    // Only adopt links from modules explicitly flagged as Claro test modules.
-    if (empty($module_list[$provider]->info['claro_test'])) {
+    // Only adopt links from modules explicitly flagged as theming test modules.
+    if (empty($module_list[$provider]->info['theming_test'])) {
       continue;
     }
     $link['menu_name'] = 'admin';
@@ -62,10 +62,10 @@ function cd_tools_menu_links_discovered_alter(array &$links): void {
 /**
  * Implements hook_entity_type_alter().
  */
-function cd_tools_entity_type_alter(array &$entity_types) {
+function theming_tools_entity_type_alter(array &$entity_types) {
   /** @var \Drupal\Core\Entity\EntityTypeInterface[] $entity_types */
   if (isset($entity_types['contact_form'])) {
-    $entity_types['contact_form']->setHandlerClass('access', '\Drupal\cd_tools\ContactFormAccessControlHandler');
+    $entity_types['contact_form']->setHandlerClass('access', '\Drupal\theming_tools\ContactFormAccessControlHandler');
   }
 }
 
@@ -94,7 +94,7 @@ function template_preprocess_layout__side_by_side(&$variables) {
  * Removes possibly duped attributes (classes or mainly ids) from the container
  * by overriding the provided array.
  */
-function cd_tools_preprocess_container__sbs_item(&$variables) {
+function theming_tools_preprocess_container__sbs_item(&$variables) {
   $region = !empty($variables['attributes']['data-region']) ?
     $variables['attributes']['data-region'] : FALSE;
   $variables['attributes'] = ['class' => ['sbs-layout__item']];

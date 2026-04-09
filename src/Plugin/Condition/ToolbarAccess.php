@@ -1,6 +1,6 @@
 <?php
 
-namespace Drupal\cd_tools\Plugin\Condition;
+namespace Drupal\theming_tools\Plugin\Condition;
 
 use Drupal\Core\Condition\ConditionPluginBase;
 use Drupal\Core\Form\FormStateInterface;

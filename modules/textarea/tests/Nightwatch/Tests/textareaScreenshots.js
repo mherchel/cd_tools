@@ -5,11 +5,11 @@
  * Error state's fileName vary by the state of the inline_form_errors module.
  */
 module.exports = {
-  "@tags": ["claro"],
+  "@tags": ["theming-tools"],
   before(browser) {
     if (browser.drupalInstall) {
       browser.drupalInstall({
-        installProfile: "clarodist"
+        installProfile: "theming_tools"
       });
     }
   },

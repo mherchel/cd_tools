@@ -1,6 +1,6 @@
 <?php
 
-namespace Drupal\cd_tools;
+namespace Drupal\theming_tools;
 
 use Drupal\Core\DependencyInjection\ContainerInjectionInterface;
 use Drupal\Core\Entity\EntityTypeManagerInterface;

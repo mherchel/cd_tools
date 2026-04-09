@@ -1,0 +1,5 @@
+tt_navigation.configtest:
+  title: 'Nav config'
+  route_name: tt_navigation.configtest
+  menu_name: main
+  weight: 5

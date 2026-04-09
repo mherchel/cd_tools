@@ -16,7 +16,7 @@ class RouteSubscriber extends RouteSubscriberBase {
    */
   protected function alterRoutes(RouteCollection $collection) {
     $overview_routes = [
-      'cd_tools.dashboard',
+      'theming_tools.dashboard',
       'comment.admin',
       'entity.configurable_language.collection',
       'entity.user.collection',

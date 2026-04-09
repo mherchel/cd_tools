@@ -48,7 +48,7 @@ function _toolbartest_unsafe_forms() {
     'block_settings_tray_form' => 'administer site configuration',
     'block_form' => 'administer site configuration',
     'block_delete_form' => 'administer site configuration',
-    'cd_tools_dashboard_form' => 'administer modules',
+    'theming_tools_dashboard_form' => 'administer modules',
     'comment_admin_overview' => 'administer comments',
     'language_admin_overview_form' => 'administer languages',
     'language_content_settings_form' => 'administer languages',

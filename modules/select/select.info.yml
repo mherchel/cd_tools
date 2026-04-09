@@ -1,10 +1,10 @@
 name: 'Select Test'
 type: module
 description: 'Test form for single and multiple select'
-package: 'CD Tools'
-claro_test: true
+package: 'Theming tools'
+theming_test: true
 dependencies:
-  - cd_tools:cd_tools
+  - theming_tools:theming_tools
   - drupal:contact
   - drupal:field_layout
   - drupal:options

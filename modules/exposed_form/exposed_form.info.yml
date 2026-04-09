@@ -1,10 +1,10 @@
 name: Exposed form
 type: module
 description: Test pages for Views exposed form and Views bulk operations form
-package: 'CD Tools'
-claro_test: true
+package: 'Theming tools'
+theming_test: true
 dependencies:
-  - cd_tools:lang_hebrew
-  - cd_tools:cd_node
+  - theming_tools:lang_hebrew
+  - theming_tools:tt_node
   - core:views
 core_version_requirement: ^10.3 || ^11 || ^12

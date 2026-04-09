@@ -3,11 +3,11 @@
  * Captures navigation (admin_block and admin_block_content) elements.
  */
 module.exports = {
-  "@tags": ["claro"],
+  "@tags": ["theming-tools"],
   before(browser) {
     if (browser.drupalInstall) {
       browser.drupalInstall({
-        installProfile: "clarodist"
+        installProfile: "theming_tools"
       });
     }
   },
