@@ -20,10 +20,6 @@ dependencies:
     - theming_tools
     - file
     - image
-third_party_settings:
-  field_layout:
-    id: side_by_side
-    settings: {  }
 id: contact_message.imagefile_image.default
 targetEntityType: contact_message
 bundle: imagefile_image
@@ -36,7 +32,7 @@ content:
       preview_image_style: thumbnail
     third_party_settings: {  }
     type: image_image
-    region: main
+    region: content
   imagefile_image_dis:
     weight: 1
     settings:
@@ -44,7 +40,7 @@ content:
       preview_image_style: thumbnail
     third_party_settings: {  }
     type: image_image
-    region: main
+    region: content
   imagefile_image_limited:
     weight: 10
     settings:
@@ -52,7 +48,7 @@ content:
       preview_image_style: thumbnail
     third_party_settings: {  }
     type: image_image
-    region: main
+    region: content
   imagefile_image_limited_dis:
     weight: 11
     settings:
@@ -60,7 +56,7 @@ content:
       preview_image_style: thumbnail
     third_party_settings: {  }
     type: image_image
-    region: main
+    region: content
   imagefile_image_multi:
     weight: 6
     settings:
@@ -68,7 +64,7 @@ content:
       preview_image_style: thumbnail
     third_party_settings: {  }
     type: image_image
-    region: main
+    region: content
   imagefile_image_multi_def:
     weight: 8
     settings:
@@ -76,7 +72,7 @@ content:
       preview_image_style: thumbnail
     third_party_settings: {  }
     type: image_image
-    region: main
+    region: content
   imagefile_image_multi_def_dis:
     weight: 9
     settings:
@@ -84,7 +80,7 @@ content:
       preview_image_style: thumbnail
     third_party_settings: {  }
     type: image_image
-    region: main
+    region: content
   imagefile_image_multi_dis:
     weight: 7
     settings:
@@ -92,7 +88,7 @@ content:
       preview_image_style: thumbnail
     third_party_settings: {  }
     type: image_image
-    region: main
+    region: content
   imagefile_image_req:
     weight: 2
     settings:
@@ -100,7 +96,7 @@ content:
       preview_image_style: thumbnail
     third_party_settings: {  }
     type: image_image
-    region: main
+    region: content
   imagefile_image_req_dis:
     weight: 3
     settings:
@@ -108,7 +104,7 @@ content:
       preview_image_style: thumbnail
     third_party_settings: {  }
     type: image_image
-    region: main
+    region: content
   imagefile_image_plain:
     weight: 4
     settings:
@@ -116,7 +112,7 @@ content:
       preview_image_style: thumbnail
     third_party_settings: {  }
     type: image_image
-    region: main
+    region: content
   imagefile_image_plain_dis:
     weight: 5
     settings:
@@ -124,7 +120,7 @@ content:
       preview_image_style: thumbnail
     third_party_settings: {  }
     type: image_image
-    region: main
+    region: content
 hidden:
   copy: true
   langcode: true

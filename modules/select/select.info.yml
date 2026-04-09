@@ -6,6 +6,5 @@ theming_test: true
 dependencies:
   - theming_tools:theming_tools
   - drupal:contact
-  - drupal:field_layout
   - drupal:options
 core_version_requirement: ^10.3 || ^11 || ^12

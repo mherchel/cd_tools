@@ -18,10 +18,6 @@ dependencies:
     - theming_tools
     - file
     - image
-third_party_settings:
-  field_layout:
-    id: side_by_side
-    settings: {  }
 id: contact_message.imagefile_file.default
 targetEntityType: contact_message
 bundle: imagefile_file
@@ -33,70 +29,70 @@ content:
       progress_indicator: throbber
     third_party_settings: {  }
     type: file_generic
-    region: main
+    region: content
   imagefile_file_dis:
     weight: 1
     settings:
       progress_indicator: throbber
     third_party_settings: {  }
     type: file_generic
-    region: main
+    region: content
   imagefile_file_limited:
     weight: 8
     settings:
       progress_indicator: throbber
     third_party_settings: {  }
     type: file_generic
-    region: main
+    region: content
   imagefile_file_limited_dis:
     weight: 9
     settings:
       progress_indicator: throbber
     third_party_settings: {  }
     type: file_generic
-    region: main
+    region: content
   imagefile_file_multi:
     weight: 6
     settings:
       progress_indicator: throbber
     third_party_settings: {  }
     type: file_generic
-    region: main
+    region: content
   imagefile_file_multi_dis:
     weight: 7
     settings:
       progress_indicator: throbber
     third_party_settings: {  }
     type: file_generic
-    region: main
+    region: content
   imagefile_file_plain:
     weight: 4
     settings:
       progress_indicator: throbber
     third_party_settings: {  }
     type: file_generic
-    region: main
+    region: content
   imagefile_file_plain_dis:
     weight: 5
     settings:
       progress_indicator: throbber
     third_party_settings: {  }
     type: file_generic
-    region: main
+    region: content
   imagefile_file_req:
     weight: 2
     settings:
       progress_indicator: throbber
     third_party_settings: {  }
     type: file_generic
-    region: main
+    region: content
   imagefile_file_req_dis:
     weight: 3
     settings:
       progress_indicator: throbber
     third_party_settings: {  }
     type: file_generic
-    region: main
+    region: content
 hidden:
   copy: true
   langcode: true

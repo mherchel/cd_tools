@@ -13,11 +13,6 @@ dependencies:
     - field.field.contact_message.field_cardinality_test.multitext_unlimited_required_dis
   module:
     - theming_tools
-    - field_layout
-third_party_settings:
-  field_layout:
-    id: side_by_side
-    settings: {  }
 id: contact_message.field_cardinality_test.default
 targetEntityType: contact_message
 bundle: field_cardinality_test
@@ -30,7 +25,7 @@ content:
       placeholder: ''
     third_party_settings: {  }
     type: string_textfield
-    region: main
+    region: content
   multitext_limited_disabled:
     weight: 5
     settings:
@@ -38,7 +33,7 @@ content:
       placeholder: ''
     third_party_settings: {  }
     type: string_textfield
-    region: main
+    region: content
   multitext_limited_required:
     weight: 6
     settings:
@@ -46,7 +41,7 @@ content:
       placeholder: Placeholder
     third_party_settings: {  }
     type: string_textfield
-    region: main
+    region: content
   multitext_limited_required_dis:
     weight: 7
     settings:
@@ -54,7 +49,7 @@ content:
       placeholder: Placeholder
     third_party_settings: {  }
     type: string_textfield
-    region: main
+    region: content
   multitext_unlimited:
     weight: 0
     settings:
@@ -62,7 +57,7 @@ content:
       placeholder: ''
     third_party_settings: {  }
     type: string_textfield
-    region: main
+    region: content
   multitext_unlimited_disabled:
     weight: 1
     settings:
@@ -70,7 +65,7 @@ content:
       placeholder: ''
     third_party_settings: {  }
     type: string_textfield
-    region: main
+    region: content
   multitext_unlimited_required:
     weight: 2
     settings:
@@ -78,7 +73,7 @@ content:
       placeholder: Placeholder
     third_party_settings: {  }
     type: string_textfield
-    region: main
+    region: content
   multitext_unlimited_required_dis:
     weight: 3
     settings:
@@ -86,7 +81,7 @@ content:
       placeholder: Placeholder
     third_party_settings: {  }
     type: string_textfield
-    region: main
+    region: content
 hidden:
   copy: true
   mail: true

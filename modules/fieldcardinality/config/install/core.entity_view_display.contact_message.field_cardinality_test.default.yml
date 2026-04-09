@@ -11,13 +11,6 @@ dependencies:
     - field.field.contact_message.field_cardinality_test.multitext_unlimited_disabled
     - field.field.contact_message.field_cardinality_test.multitext_unlimited_required
     - field.field.contact_message.field_cardinality_test.multitext_unlimited_required_dis
-  module:
-    - field_layout
-    - layout_discovery
-third_party_settings:
-  field_layout:
-    id: layout_onecol
-    settings: {  }
 id: contact_message.field_cardinality_test.default
 targetEntityType: contact_message
 bundle: field_cardinality_test

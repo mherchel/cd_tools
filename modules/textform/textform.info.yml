@@ -9,7 +9,6 @@ dependencies:
   - drupal:contact
   - drupal:datetime
   - drupal:datetime_range
-  - drupal:field_layout
   - drupal:image
   - drupal:telephone
   - drupal:text

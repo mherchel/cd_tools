@@ -39,17 +39,12 @@ dependencies:
   module:
     - datetime
     - datetime_range
-    - field_layout
     - file
     - image
     - link
     - theming_tools
     - telephone
     - textfixtures
-third_party_settings:
-  field_layout:
-    id: side_by_side
-    settings: {  }
 id: contact_message.textform.default
 targetEntityType: contact_message
 bundle: textform
@@ -62,7 +57,7 @@ content:
       placeholder: ''
     third_party_settings: {  }
     type: textfixture_default
-    region: main
+    region: content
   color_disabled:
     weight: 31
     settings:
@@ -70,55 +65,55 @@ content:
       placeholder: ''
     third_party_settings: {  }
     type: textfixture_default
-    region: main
+    region: content
   date:
     weight: 18
     settings: {  }
     third_party_settings: {  }
     type: datetime_default
-    region: main
+    region: content
   date_disabled:
     weight: 19
     settings: {  }
     third_party_settings: {  }
     type: datetime_default
-    region: main
+    region: content
   daterange:
     weight: 22
     settings: {  }
     third_party_settings: {  }
     type: daterange_default
-    region: main
+    region: content
   daterange_ad:
     weight: 24
     settings: {  }
     third_party_settings: {  }
     type: daterange_default
-    region: main
+    region: content
   daterange_ad_disabled:
     weight: 25
     settings: {  }
     third_party_settings: {  }
     type: daterange_default
-    region: main
+    region: content
   daterange_disabled:
     weight: 23
     settings: {  }
     third_party_settings: {  }
     type: daterange_default
-    region: main
+    region: content
   datetime:
     weight: 20
     settings: {  }
     third_party_settings: {  }
     type: datetime_default
-    region: main
+    region: content
   datetime_disabled:
     weight: 21
     settings: {  }
     third_party_settings: {  }
     type: datetime_default
-    region: main
+    region: content
   email:
     weight: 2
     settings:
@@ -126,7 +121,7 @@ content:
       placeholder: ''
     third_party_settings: {  }
     type: email_default
-    region: main
+    region: content
   email_disabled:
     weight: 3
     settings:
@@ -134,21 +129,21 @@ content:
       placeholder: ''
     third_party_settings: {  }
     type: email_default
-    region: main
+    region: content
   file:
     weight: 26
     settings:
       progress_indicator: throbber
     third_party_settings: {  }
     type: file_generic
-    region: main
+    region: content
   file_disabled:
     weight: 27
     settings:
       progress_indicator: throbber
     third_party_settings: {  }
     type: file_generic
-    region: main
+    region: content
   image:
     weight: 28
     settings:
@@ -156,7 +151,7 @@ content:
       preview_image_style: thumbnail
     third_party_settings: {  }
     type: image_image
-    region: main
+    region: content
   image_disabled:
     weight: 29
     settings:
@@ -164,7 +159,7 @@ content:
       preview_image_style: thumbnail
     third_party_settings: {  }
     type: image_image
-    region: main
+    region: content
   link:
     weight: 12
     settings:
@@ -172,7 +167,7 @@ content:
       placeholder_title: ''
     third_party_settings: {  }
     type: link_default
-    region: main
+    region: content
   link_disabled:
     weight: 13
     settings:
@@ -180,7 +175,7 @@ content:
       placeholder_title: ''
     third_party_settings: {  }
     type: link_default
-    region: main
+    region: content
   link_title:
     weight: 14
     settings:
@@ -188,7 +183,7 @@ content:
       placeholder_title: ''
     third_party_settings: {  }
     type: link_default
-    region: main
+    region: content
   link_title_disabled:
     weight: 15
     settings:
@@ -196,21 +191,21 @@ content:
       placeholder_title: ''
     third_party_settings: {  }
     type: link_default
-    region: main
+    region: content
   number:
     weight: 6
     settings:
       placeholder: ''
     third_party_settings: {  }
     type: number
-    region: main
+    region: content
   number_disabled:
     weight: 7
     settings:
       placeholder: ''
     third_party_settings: {  }
     type: number
-    region: main
+    region: content
   password:
     weight: 10
     settings:
@@ -218,7 +213,7 @@ content:
       placeholder: ''
     third_party_settings: {  }
     type: textfixture_default
-    region: main
+    region: content
   password_disabled:
     weight: 11
     settings:
@@ -226,21 +221,21 @@ content:
       placeholder: ''
     third_party_settings: {  }
     type: textfixture_default
-    region: main
+    region: content
   phone:
     weight: 4
     settings:
       placeholder: ''
     third_party_settings: {  }
     type: telephone_default
-    region: main
+    region: content
   phone_disabled:
     weight: 5
     settings:
       placeholder: ''
     third_party_settings: {  }
     type: telephone_default
-    region: main
+    region: content
   search:
     weight: 8
     settings:
@@ -248,7 +243,7 @@ content:
       placeholder: ''
     third_party_settings: {  }
     type: textfixture_default
-    region: main
+    region: content
   search_disabled:
     weight: 9
     settings:
@@ -256,7 +251,7 @@ content:
       placeholder: ''
     third_party_settings: {  }
     type: textfixture_default
-    region: main
+    region: content
   text:
     weight: 0
     settings:
@@ -264,7 +259,7 @@ content:
       placeholder: Placeholder
     third_party_settings: {  }
     type: string_textfield
-    region: main
+    region: content
   text_disabled:
     weight: 1
     settings:
@@ -272,19 +267,19 @@ content:
       placeholder: 'Disabled placeholder'
     third_party_settings: {  }
     type: string_textfield
-    region: main
+    region: content
   timestamp:
     weight: 16
     settings: {  }
     third_party_settings: {  }
     type: datetime_timestamp
-    region: main
+    region: content
   timestamp_disabled:
     weight: 17
     settings: {  }
     third_party_settings: {  }
     type: datetime_timestamp
-    region: main
+    region: content
 hidden:
   copy: true
   langcode: true

@@ -35,11 +35,6 @@ point of the module is to surface cross-theme rendering differences.
 - **`hook_entity_type_alter()`** — registers `ContactFormAccessControlHandler`
   on `contact_form` entities so test contact forms ship open to anonymous
   users for test access.
-- **`side_by_side` layout plugin** — a two-column layout used by several
-  form-widget test submodules to render default vs. disabled widgets side
-  by side for visual comparison.
-- **`toolbar_access` condition plugin** — condition plugin for testing block
-  visibility against the current user's ability to access the toolbar.
 - **Three test themes** — fixtures used to exercise the theme admin UI:
   `noscreenshot_theme` and `noscreenshot_2_theme` (themes without
   screenshots) and `incompatible_theme` (intentionally pinned to
@@ -99,7 +94,6 @@ with its test route, done.
 | `textform`         | Test form for text-like form items (textfield, telephone, email, url, datetime, ...).           |
 | `themeswitcher`    | Adds a footer form that auto-switches the active theme on change, via a cookie.               |
 | `title_shortcut`   | Tests page titles alongside shortcut badges. Uses the tab submodule's routes as the host page. |
-| `toolbartest`      | Opens toolbar and some admin routes to anonymous users. **Requires `drupal/tour` contrib**; not enabled by default. |
 | `vertical_tabs`    | Test pages for the Vertical Tabs component.                                                   |
 
 ## Dependencies
@@ -124,8 +118,6 @@ on. Install from contrib as needed:
 
 ```
 ddev composer require drupal/contact       # checkboxradio, fieldcardinality, imagefile, presuf, select, textarea, textform
-ddev composer require drupal/field_layout  # same set as contact
-ddev composer require drupal/tour          # toolbartest only
 ```
 
 If these aren't installed, the dependent submodules simply won't enable.

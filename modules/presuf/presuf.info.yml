@@ -8,6 +8,5 @@ dependencies:
   - theming_tools:lang_hebrew
   - theming_tools:testfilters
   - drupal:contact
-  - drupal:field_layout
   - drupal:field_ui
 core_version_requirement: ^10.3 || ^11 || ^12

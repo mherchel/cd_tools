@@ -11,14 +11,6 @@ dependencies:
     - field.field.contact_message.presuf_text.presuf_text_pre_suf_m
     - field.field.contact_message.presuf_text.presuf_text_suf
     - field.field.contact_message.presuf_text.presuf_text_suf_m
-  module:
-    - field_layout
-    - layout_discovery
-third_party_settings:
-  field_layout:
-    id: layout_onecol
-    settings:
-      label: ''
 id: contact_message.presuf_text.default
 targetEntityType: contact_message
 bundle: presuf_text
